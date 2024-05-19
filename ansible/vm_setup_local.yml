@@ -1,0 +1,7 @@
+---
+- name: Setup Server
+  hosts: local
+  become: true
+  roles:
+    - aptitude
+    - docker

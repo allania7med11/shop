@@ -1,2 +1,5 @@
 shop_back
 shop_front
+.vagrant
+.vscode
+*.log

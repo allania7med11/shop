@@ -1,0 +1,2 @@
+[local]
+deploy ansible_host=shop
