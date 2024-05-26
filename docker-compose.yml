@@ -2,6 +2,7 @@ version: '3'
 
 services:
   db:
+    container_name: shop_db
     image: postgres
     environment:
       POSTGRES_DB: shop_db
@@ -12,6 +13,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   shop_back:
+    container_name: shop_back
     build:
       context: ./shop_back  # Directory containing Dockerfile for backend
     env_file: ./shop_back/.env 
@@ -20,17 +22,17 @@ services:
     user: "5678:5678"
     volumes:
       - ./shop_back:/app  # Map the backend directory to the container
-    # Add any additional configuration for backend service like ports, volumes, etc.
 
   shop_front:
+    container_name: shop_front
     build:
       context: ./shop_front  # Directory containing Dockerfile for frontend
     env_file: ./shop_front/.env 
     volumes:
       - ./shop_front:/app  # Map the frontend directory to the container
-    # Add any additional configuration for frontend service like ports, volumes, etc.
 
   nginx:
+    container_name: shop_nginx
     image: nginx
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
