@@ -23,7 +23,6 @@ services:
       - db
     volumes:
       - ./shop_back:/app  
-      - "8000:8000"
     environment:
       - PYTHONUNBUFFERED=1
 
