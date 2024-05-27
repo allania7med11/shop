@@ -16,12 +16,17 @@ services:
     container_name: shop_back
     build:
       context: ./shop_back  # Directory containing Dockerfile for backend
+      args:
+        DEV_BUILD: True 
     env_file: ./shop_back/.env 
     depends_on:
       - db
-    user: "5678:5678"
     volumes:
       - ./shop_back:/app  # Map the backend directory to the container
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
 
   shop_front:
     container_name: shop_front
