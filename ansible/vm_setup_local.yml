@@ -1,6 +1,6 @@
 ---
 - name: Setup Server
-  hosts: local
+  hosts: "{{ host_on| default('local') }}"
   become: true
   roles:
     - aptitude

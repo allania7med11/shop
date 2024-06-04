@@ -1,2 +1,5 @@
 [local]
-deploy ansible_host=shop
+localhost ansible_connection=local
+
+[shop]
+remote ansible_host=shop
