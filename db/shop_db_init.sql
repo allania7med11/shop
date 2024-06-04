@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 16.2 (Ubuntu 16.2-1.pgdg22.04+1)
--- Dumped by pg_dump version 16.2 (Ubuntu 16.2-1.pgdg22.04+1)
+-- Dumped from database version 16.3 (Debian 16.3-1.pgdg120+1)
+-- Dumped by pg_dump version 16.3 (Debian 16.3-1.pgdg120+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -481,6 +481,41 @@ CREATE TABLE public.django_session (
 ALTER TABLE public.django_session OWNER TO postgres;
 
 --
+-- Name: django_site; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.django_site (
+    id integer NOT NULL,
+    domain character varying(100) NOT NULL,
+    name character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.django_site OWNER TO postgres;
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.django_site_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.django_site_id_seq OWNER TO postgres;
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.django_site_id_seq OWNED BY public.django_site.id;
+
+
+--
 -- Name: products_category; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -781,6 +816,40 @@ ALTER SEQUENCE public.socialaccount_socialapp_id_seq OWNED BY public.socialaccou
 
 
 --
+-- Name: socialaccount_socialapp_sites; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.socialaccount_socialapp_sites (
+    id bigint NOT NULL,
+    socialapp_id integer NOT NULL,
+    site_id integer NOT NULL
+);
+
+
+ALTER TABLE public.socialaccount_socialapp_sites OWNER TO postgres;
+
+--
+-- Name: socialaccount_socialapp_sites_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.socialaccount_socialapp_sites_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.socialaccount_socialapp_sites_id_seq OWNER TO postgres;
+
+--
+-- Name: socialaccount_socialapp_sites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.socialaccount_socialapp_sites_id_seq OWNED BY public.socialaccount_socialapp_sites.id;
+
+
+--
 -- Name: socialaccount_socialtoken; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -903,6 +972,13 @@ ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: django_site id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_site ALTER COLUMN id SET DEFAULT nextval('public.django_site_id_seq'::regclass);
+
+
+--
 -- Name: products_category id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -956,6 +1032,13 @@ ALTER TABLE ONLY public.socialaccount_socialaccount ALTER COLUMN id SET DEFAULT 
 --
 
 ALTER TABLE ONLY public.socialaccount_socialapp ALTER COLUMN id SET DEFAULT nextval('public.socialaccount_socialapp_id_seq'::regclass);
+
+
+--
+-- Name: socialaccount_socialapp_sites id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.socialaccount_socialapp_sites ALTER COLUMN id SET DEFAULT nextval('public.socialaccount_socialapp_sites_id_seq'::regclass);
 
 
 --
@@ -1082,6 +1165,10 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 78	Can change order items	20	change_orderitems
 79	Can delete order items	20	delete_orderitems
 80	Can view order items	20	view_orderitems
+81	Can add site	21	add_site
+82	Can change site	21	change_site
+83	Can delete site	21	delete_site
+84	Can view site	21	view_site
 \.
 
 
@@ -1090,7 +1177,7 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$320000$erlw1yt5nNp7d9gGIS9anq$o7uxwWBNLD8E2uPxSL+Xdy+SYyxYt+dwKxvXDvbq6fY=	2024-04-07 19:11:53.257923+00	t	allaniahmedkr			allaniahmedkr@gmail.com	t	t	2024-04-07 17:49:10.049828+00
+1	pbkdf2_sha256$320000$erlw1yt5nNp7d9gGIS9anq$o7uxwWBNLD8E2uPxSL+Xdy+SYyxYt+dwKxvXDvbq6fY=	2024-06-03 17:39:06.40634+00	t	allaniahmedkr			allaniahmedkr@gmail.com	t	t	2024-04-07 17:49:10.049828+00
 \.
 
 
@@ -1162,6 +1249,7 @@ COPY public.django_content_type (id, app_label, model) FROM stdin;
 18	products	file
 19	products	order
 20	products	orderitems
+21	sites	site
 \.
 
 
@@ -1208,12 +1296,14 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 36	products	0009_remove_order_session_id_order_uuid	2024-04-07 17:35:46.178084+00
 37	products	0010_alter_order_uuid_alter_orderitems_order	2024-04-07 17:35:46.213893+00
 38	sessions	0001_initial	2024-04-07 17:35:46.24436+00
-39	socialaccount	0001_initial	2024-04-07 17:35:46.422439+00
-40	socialaccount	0002_token_max_lengths	2024-04-07 17:35:46.463859+00
-41	socialaccount	0003_extra_data_default_dict	2024-04-07 17:35:46.479376+00
-42	socialaccount	0004_app_provider_id_settings	2024-04-07 17:35:46.504763+00
-43	socialaccount	0005_socialtoken_nullable_app	2024-04-07 17:35:46.52953+00
-44	socialaccount	0006_alter_socialaccount_extra_data	2024-04-07 17:35:46.557647+00
+45	sites	0001_initial	2024-06-04 06:11:23.610231+00
+46	sites	0002_alter_domain_unique	2024-06-04 06:11:23.619883+00
+47	socialaccount	0001_initial	2024-06-04 06:11:23.706102+00
+48	socialaccount	0002_token_max_lengths	2024-06-04 06:11:23.732406+00
+49	socialaccount	0003_extra_data_default_dict	2024-06-04 06:11:23.744536+00
+50	socialaccount	0004_app_provider_id_settings	2024-06-04 06:11:23.766625+00
+51	socialaccount	0005_socialtoken_nullable_app	2024-06-04 06:11:23.791412+00
+52	socialaccount	0006_alter_socialaccount_extra_data	2024-06-04 06:11:23.811606+00
 \.
 
 
@@ -1229,6 +1319,18 @@ nxo5dpldc742erqatsyeoa2mj2g62imz	eyJvcmRlcl91dWlkIjoiYTg0ODAyNzQtOTdmYy00ZTM1LTg
 gd8nsqfmoxougpcdfttsizn7xyvnqd07	eyJvcmRlcl91dWlkIjoiNTVkNTllNWEtNjAyNy00YTFlLWIzMjMtYjllMzEyOGZjNjhlIn0:1ru19c:553Q0dXW4FR_RR2h-ZMQ4OYZw_MXA2dq1osD9004ElU	2024-04-23 02:24:08.947485+00
 6l8xeyifb5f3811oj0nr763ix3uyf9t7	eyJvcmRlcl91dWlkIjoiYzdjZjViNTEtMDEzYi00N2M2LTgyZjItYzhmMmVkMWE3MzQwIn0:1ru19e:sy7LC-6Ns_s_u46qtiMvQliHMbUt9TwSyRjFFiki74M	2024-04-23 02:24:10.548725+00
 7psdzuzo75ju0f0u6abaxycbsittwyim	eyJvcmRlcl91dWlkIjoiZDBmODlhZDctZDQwZS00ZDMxLTllNjctNmJmZmYzNzFkODM5In0:1ruquO:14N3DNUg7y_rpj-9J8fVGCJY1byMpxFzZjYvt2odPNM	2024-04-25 09:39:52.567905+00
+x46qdmcvnae259ht860bsiq6iw9l8xim	eyJvcmRlcl91dWlkIjoiNGFlYzYzOTQtYTY2Ny00YjA3LWIyN2MtOGY5ZTZmZTIxOGNhIn0:1sE70r:mwPF3kj57R1WwI9ZawXkSDrOFAZml-UWBWWbMHA4l1E	2024-06-17 12:42:09.615293+00
+vwemyb1pok8ttn406iqt3f1g4m6sy4wd	eyJvcmRlcl91dWlkIjoiM2EzMzZhYWQtZjI2NC00OWZkLTg2MDUtZWI0NTNjNzdjZDk0In0:1sE70w:U94_bStu5RWcFrr65L3_B36HdbE7ePoXfNTTFfbRjNM	2024-06-17 12:42:14.102445+00
+og2s2zr0xd8a89efh0i4kgsja7md450g	.eJxdjDsOgzAQRO_iOiB_sM2mSy6C1vauQEFGAruKcvcAoknKeTNv3mJZE61DrVMSd8EO2LJ1DUjgpuMQm6BiaDppA2ole2mUuIkBaxmHuu3iqf2xgPFF-Shwng_cYoxLzaU9N1e9tY89US5TxDIt-XlZP1cjbuP-Y0j2MVoOyjMGq6VmdFaiB8vA2iCSDwTEKlkDDoxzCETao1IsXRKfL9FeS2w:1sEBeE:Mtg-ahyHZZN-s2mhU80ocBx4B0VWVa4yHB6Xcg6pKUo	2024-06-17 17:39:06.408505+00
+\.
+
+
+--
+-- Data for Name: django_site; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.django_site (id, domain, name) FROM stdin;
+1	example.com	example.com
 \.
 
 
@@ -1448,6 +1550,8 @@ COPY public.products_order (id, order_date, total_amount, status, user_id, uuid)
 4	2024-04-09 02:24:08.935389+00	\N	draft	\N	55d59e5a-6027-4a1e-b323-b9e3128fc68e
 5	2024-04-09 02:24:10.538672+00	\N	draft	\N	c7cf5b51-013b-47c6-82f2-c8f2ed1a7340
 6	2024-04-11 09:39:52.554506+00	\N	draft	\N	d0f89ad7-d40e-4d31-9e67-6bfff371d839
+7	2024-06-03 12:42:09.58361+00	\N	draft	\N	4aec6394-a667-4b07-b27c-8f9e6fe218ca
+8	2024-06-03 12:42:14.092371+00	\N	draft	\N	3a336aad-f264-49fd-8605-eb453c77cd94
 \.
 
 
@@ -1457,6 +1561,8 @@ COPY public.products_order (id, order_date, total_amount, status, user_id, uuid)
 
 COPY public.products_orderitems (id, quantity, subtotal, order_id, product_id) FROM stdin;
 1	1	\N	6	8
+2	1	\N	8	8
+3	1	\N	1	9
 \.
 
 
@@ -1524,6 +1630,14 @@ COPY public.socialaccount_socialapp (id, provider, name, client_id, secret, key,
 
 
 --
+-- Data for Name: socialaccount_socialapp_sites; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.socialaccount_socialapp_sites (id, socialapp_id, site_id) FROM stdin;
+\.
+
+
+--
 -- Data for Name: socialaccount_socialtoken; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1563,7 +1677,7 @@ SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.auth_permission_id_seq', 80, true);
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 84, true);
 
 
 --
@@ -1605,14 +1719,21 @@ SELECT pg_catalog.setval('public.django_admin_log_id_seq', 3, true);
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_content_type_id_seq', 20, true);
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 21, true);
 
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 44, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 52, true);
+
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.django_site_id_seq', 1, true);
 
 
 --
@@ -1640,14 +1761,14 @@ SELECT pg_catalog.setval('public.products_file_id_seq', 145, true);
 -- Name: products_order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.products_order_id_seq', 6, true);
+SELECT pg_catalog.setval('public.products_order_id_seq', 9, true);
 
 
 --
 -- Name: products_orderitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.products_orderitems_id_seq', 1, true);
+SELECT pg_catalog.setval('public.products_orderitems_id_seq', 3, true);
 
 
 --
@@ -1669,6 +1790,13 @@ SELECT pg_catalog.setval('public.socialaccount_socialaccount_id_seq', 1, false);
 --
 
 SELECT pg_catalog.setval('public.socialaccount_socialapp_id_seq', 1, false);
+
+
+--
+-- Name: socialaccount_socialapp_sites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.socialaccount_socialapp_sites_id_seq', 1, false);
 
 
 --
@@ -1871,6 +1999,22 @@ ALTER TABLE ONLY public.django_session
 
 
 --
+-- Name: django_site django_site_domain_a2e37b91_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_site
+    ADD CONSTRAINT django_site_domain_a2e37b91_uniq UNIQUE (domain);
+
+
+--
+-- Name: django_site django_site_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_site
+    ADD CONSTRAINT django_site_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: products_category products_category_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1967,11 +2111,27 @@ ALTER TABLE ONLY public.socialaccount_socialaccount
 
 
 --
+-- Name: socialaccount_socialapp_sites socialaccount_socialapp__socialapp_id_site_id_71a9a768_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.socialaccount_socialapp_sites
+    ADD CONSTRAINT socialaccount_socialapp__socialapp_id_site_id_71a9a768_uniq UNIQUE (socialapp_id, site_id);
+
+
+--
 -- Name: socialaccount_socialapp socialaccount_socialapp_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.socialaccount_socialapp
     ADD CONSTRAINT socialaccount_socialapp_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: socialaccount_socialapp_sites socialaccount_socialapp_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.socialaccount_socialapp_sites
+    ADD CONSTRAINT socialaccount_socialapp_sites_pkey PRIMARY KEY (id);
 
 
 --
@@ -2117,6 +2277,13 @@ CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session U
 
 
 --
+-- Name: django_site_domain_a2e37b91_like; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX django_site_domain_a2e37b91_like ON public.django_site USING btree (domain varchar_pattern_ops);
+
+
+--
 -- Name: products_category_slug_c558efae_like; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -2177,6 +2344,20 @@ CREATE INDEX products_product_slug_70d3148d_like ON public.products_product USIN
 --
 
 CREATE INDEX socialaccount_socialaccount_user_id_8146e70c ON public.socialaccount_socialaccount USING btree (user_id);
+
+
+--
+-- Name: socialaccount_socialapp_sites_site_id_2579dee5; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX socialaccount_socialapp_sites_site_id_2579dee5 ON public.socialaccount_socialapp_sites USING btree (site_id);
+
+
+--
+-- Name: socialaccount_socialapp_sites_socialapp_id_97fb6e7d; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX socialaccount_socialapp_sites_socialapp_id_97fb6e7d ON public.socialaccount_socialapp_sites USING btree (socialapp_id);
 
 
 --
@@ -2358,6 +2539,22 @@ ALTER TABLE ONLY public.socialaccount_socialtoken
 
 ALTER TABLE ONLY public.socialaccount_socialtoken
     ADD CONSTRAINT socialaccount_social_app_id_636a42d7_fk_socialacc FOREIGN KEY (app_id) REFERENCES public.socialaccount_socialapp(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: socialaccount_socialapp_sites socialaccount_social_site_id_2579dee5_fk_django_si; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.socialaccount_socialapp_sites
+    ADD CONSTRAINT socialaccount_social_site_id_2579dee5_fk_django_si FOREIGN KEY (site_id) REFERENCES public.django_site(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: socialaccount_socialapp_sites socialaccount_social_socialapp_id_97fb6e7d_fk_socialacc; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.socialaccount_socialapp_sites
+    ADD CONSTRAINT socialaccount_social_socialapp_id_97fb6e7d_fk_socialacc FOREIGN KEY (socialapp_id) REFERENCES public.socialaccount_socialapp(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
