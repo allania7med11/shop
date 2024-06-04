@@ -6,7 +6,7 @@
         {
             "label": "Run Project",
             "type": "shell",
-            "command": "./run_ansible.sh",
+            "command": "./run_ansible.sh ${config:host_on}",
             "group": "test",
             "presentation": {
                 "reveal": "always",
