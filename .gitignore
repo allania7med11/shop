@@ -3,3 +3,4 @@ shop_front
 .vagrant
 .vscode
 *.log
+backup.sql
