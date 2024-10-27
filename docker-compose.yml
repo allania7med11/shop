@@ -46,6 +46,16 @@ services:
     depends_on:
       - shop_back
       - shop_front
+  
+  shop_e2e:
+    container_name: shop_e2e
+    build:
+      context: ./shop_e2e
+    depends_on:
+      - shop_front
+    volumes:
+      - ./shop_e2e:/app
+    command: ["sleep", "infinity"]
 
 volumes:
   postgres_data:

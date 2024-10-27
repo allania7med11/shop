@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 16.3 (Debian 16.3-1.pgdg120+1)
--- Dumped by pg_dump version 16.3 (Debian 16.3-1.pgdg120+1)
+-- Dumped from database version 14.12 (Ubuntu 14.12-0ubuntu0.22.04.1)
+-- Dumped by pg_dump version 14.12 (Ubuntu 14.12-0ubuntu0.22.04.1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -48,7 +48,7 @@ CREATE SEQUENCE public.account_emailaddress_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.account_emailaddress_id_seq OWNER TO postgres;
+ALTER TABLE public.account_emailaddress_id_seq OWNER TO postgres;
 
 --
 -- Name: account_emailaddress_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -85,7 +85,7 @@ CREATE SEQUENCE public.account_emailconfirmation_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.account_emailconfirmation_id_seq OWNER TO postgres;
+ALTER TABLE public.account_emailconfirmation_id_seq OWNER TO postgres;
 
 --
 -- Name: account_emailconfirmation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -119,7 +119,7 @@ CREATE SEQUENCE public.auth_group_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.auth_group_id_seq OWNER TO postgres;
+ALTER TABLE public.auth_group_id_seq OWNER TO postgres;
 
 --
 -- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -153,7 +153,7 @@ CREATE SEQUENCE public.auth_group_permissions_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.auth_group_permissions_id_seq OWNER TO postgres;
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO postgres;
 
 --
 -- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -189,7 +189,7 @@ CREATE SEQUENCE public.auth_permission_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.auth_permission_id_seq OWNER TO postgres;
+ALTER TABLE public.auth_permission_id_seq OWNER TO postgres;
 
 --
 -- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -244,7 +244,7 @@ CREATE SEQUENCE public.auth_user_groups_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.auth_user_groups_id_seq OWNER TO postgres;
+ALTER TABLE public.auth_user_groups_id_seq OWNER TO postgres;
 
 --
 -- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -266,7 +266,7 @@ CREATE SEQUENCE public.auth_user_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.auth_user_id_seq OWNER TO postgres;
+ALTER TABLE public.auth_user_id_seq OWNER TO postgres;
 
 --
 -- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -300,7 +300,7 @@ CREATE SEQUENCE public.auth_user_user_permissions_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNER TO postgres;
+ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO postgres;
 
 --
 -- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -347,7 +347,7 @@ CREATE SEQUENCE public.core_commandhistory_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.core_commandhistory_id_seq OWNER TO postgres;
+ALTER TABLE public.core_commandhistory_id_seq OWNER TO postgres;
 
 --
 -- Name: core_commandhistory_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -388,7 +388,7 @@ CREATE SEQUENCE public.django_admin_log_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.django_admin_log_id_seq OWNER TO postgres;
+ALTER TABLE public.django_admin_log_id_seq OWNER TO postgres;
 
 --
 -- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -423,7 +423,7 @@ CREATE SEQUENCE public.django_content_type_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.django_content_type_id_seq OWNER TO postgres;
+ALTER TABLE public.django_content_type_id_seq OWNER TO postgres;
 
 --
 -- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -458,7 +458,7 @@ CREATE SEQUENCE public.django_migrations_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.django_migrations_id_seq OWNER TO postgres;
+ALTER TABLE public.django_migrations_id_seq OWNER TO postgres;
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -506,7 +506,7 @@ CREATE SEQUENCE public.django_site_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.django_site_id_seq OWNER TO postgres;
+ALTER TABLE public.django_site_id_seq OWNER TO postgres;
 
 --
 -- Name: django_site_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -542,7 +542,7 @@ CREATE SEQUENCE public.products_category_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.products_category_id_seq OWNER TO postgres;
+ALTER TABLE public.products_category_id_seq OWNER TO postgres;
 
 --
 -- Name: products_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -577,7 +577,7 @@ CREATE SEQUENCE public.products_discount_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.products_discount_id_seq OWNER TO postgres;
+ALTER TABLE public.products_discount_id_seq OWNER TO postgres;
 
 --
 -- Name: products_discount_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -612,7 +612,7 @@ CREATE SEQUENCE public.products_file_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.products_file_id_seq OWNER TO postgres;
+ALTER TABLE public.products_file_id_seq OWNER TO postgres;
 
 --
 -- Name: products_file_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -649,13 +649,51 @@ CREATE SEQUENCE public.products_order_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.products_order_id_seq OWNER TO postgres;
+ALTER TABLE public.products_order_id_seq OWNER TO postgres;
 
 --
 -- Name: products_order_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.products_order_id_seq OWNED BY public.products_order.id;
+
+
+--
+-- Name: products_orderaddress; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.products_orderaddress (
+    id bigint NOT NULL,
+    street character varying(255) NOT NULL,
+    city character varying(100) NOT NULL,
+    zip_code character varying(20) NOT NULL,
+    country character varying(100) NOT NULL,
+    phone character varying(20) NOT NULL,
+    order_id bigint NOT NULL
+);
+
+
+ALTER TABLE public.products_orderaddress OWNER TO postgres;
+
+--
+-- Name: products_orderaddress_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.products_orderaddress_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.products_orderaddress_id_seq OWNER TO postgres;
+
+--
+-- Name: products_orderaddress_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.products_orderaddress_id_seq OWNED BY public.products_orderaddress.id;
 
 
 --
@@ -686,7 +724,7 @@ CREATE SEQUENCE public.products_orderitems_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.products_orderitems_id_seq OWNER TO postgres;
+ALTER TABLE public.products_orderitems_id_seq OWNER TO postgres;
 
 --
 -- Name: products_orderitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -727,7 +765,7 @@ CREATE SEQUENCE public.products_product_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.products_product_id_seq OWNER TO postgres;
+ALTER TABLE public.products_product_id_seq OWNER TO postgres;
 
 --
 -- Name: products_product_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -766,7 +804,7 @@ CREATE SEQUENCE public.socialaccount_socialaccount_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.socialaccount_socialaccount_id_seq OWNER TO postgres;
+ALTER TABLE public.socialaccount_socialaccount_id_seq OWNER TO postgres;
 
 --
 -- Name: socialaccount_socialaccount_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -806,7 +844,7 @@ CREATE SEQUENCE public.socialaccount_socialapp_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.socialaccount_socialapp_id_seq OWNER TO postgres;
+ALTER TABLE public.socialaccount_socialapp_id_seq OWNER TO postgres;
 
 --
 -- Name: socialaccount_socialapp_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -840,7 +878,7 @@ CREATE SEQUENCE public.socialaccount_socialapp_sites_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.socialaccount_socialapp_sites_id_seq OWNER TO postgres;
+ALTER TABLE public.socialaccount_socialapp_sites_id_seq OWNER TO postgres;
 
 --
 -- Name: socialaccount_socialapp_sites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -878,7 +916,7 @@ CREATE SEQUENCE public.socialaccount_socialtoken_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.socialaccount_socialtoken_id_seq OWNER TO postgres;
+ALTER TABLE public.socialaccount_socialtoken_id_seq OWNER TO postgres;
 
 --
 -- Name: socialaccount_socialtoken_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1007,6 +1045,13 @@ ALTER TABLE ONLY public.products_order ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: products_orderaddress id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products_orderaddress ALTER COLUMN id SET DEFAULT nextval('public.products_orderaddress_id_seq'::regclass);
+
+
+--
 -- Name: products_orderitems id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1053,6 +1098,9 @@ ALTER TABLE ONLY public.socialaccount_socialtoken ALTER COLUMN id SET DEFAULT ne
 --
 
 COPY public.account_emailaddress (id, email, verified, "primary", user_id) FROM stdin;
+1	allaniahmedkr@gmail.com	f	f	1
+2	allaniahmedkr+cl1@gmail.com	f	t	2
+3	allaniahmedkr+sophia@gmail.com	f	t	3
 \.
 
 
@@ -1169,6 +1217,10 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 82	Can change site	21	change_site
 83	Can delete site	21	delete_site
 84	Can view site	21	view_site
+85	Can add order address	22	add_orderaddress
+86	Can change order address	22	change_orderaddress
+87	Can delete order address	22	delete_orderaddress
+88	Can view order address	22	view_orderaddress
 \.
 
 
@@ -1177,7 +1229,9 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$320000$erlw1yt5nNp7d9gGIS9anq$o7uxwWBNLD8E2uPxSL+Xdy+SYyxYt+dwKxvXDvbq6fY=	2024-06-03 17:39:06.40634+00	t	allaniahmedkr			allaniahmedkr@gmail.com	t	t	2024-04-07 17:49:10.049828+00
+2	pbkdf2_sha256$320000$h5PlilPtj9u36bTfpzBq0u$zwkvUkBwohWAAaicLtC2u4x1cTQ5J+WmiNPYMLZVA/I=	2024-06-22 09:29:20+00	f	james	James	Mitchell	james.mitchell@gmail.com	f	t	2024-06-22 09:29:19+00
+3	pbkdf2_sha256$320000$8yr2bwyQTd9BVYmEgHVfTB$4jdunprnz5bkmNiHSrooNf9tn3f+6w+ZkcuPuSNJxgU=	2024-06-22 11:31:33.825512+00	f	sophia	Sophia	Bennett	allaniahmedkr+sophia@gmail.com	f	t	2024-06-22 11:31:33.363407+00
+1	pbkdf2_sha256$320000$oiSDVobTxfra35hNtsnxAR$WCSjMlyEtCRuObpZsX4D6AEUERI0PsgII2kjcWYZyOU=	2024-07-14 08:46:14.262828+00	t	allaniahmedkr	Oliver	Harrison	allaniahmedkr@gmail.com	t	t	2024-04-07 17:49:10+00
 \.
 
 
@@ -1221,6 +1275,15 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1	2024-04-09 01:41:05.12078+00	39	Key Holder	2	[{"changed": {"fields": ["Description"]}}]	17	1
 2	2024-04-09 02:28:31.635121+00	39	Key Holder	2	[]	17	1
 3	2024-04-09 02:28:45.133692+00	39	Key Holder	2	[]	17	1
+4	2024-06-09 16:38:52.544352+00	1	https://shop.effectivewebapp.com	2	[{"changed": {"fields": ["Domain name", "Display name"]}}]	21	1
+5	2024-06-09 16:42:51.045041+00	1	shop.effectivewebapp.com	2	[{"changed": {"fields": ["Domain name"]}}]	21	1
+6	2024-06-20 08:16:16.899358+00	1	Order #1 (Shipped)	2	[{"changed": {"fields": ["Status"]}}]	19	1
+7	2024-06-22 11:01:43.424279+00	36	Order #36 (Processing)	2	[{"changed": {"name": "order address", "object": "Address for Order 36", "fields": ["Street", "City", "Zip code", "Country", "Phone"]}}]	19	1
+8	2024-06-22 11:03:23.447134+00	2	james	2	[{"changed": {"fields": ["Email address"]}}]	4	1
+9	2024-06-22 11:03:52.231531+00	2	james	2	[{"changed": {"fields": ["Email address"]}}]	4	1
+10	2024-06-22 11:28:23.650816+00	36	Order #36 (Delivered)	2	[{"changed": {"fields": ["Status"]}}]	19	1
+11	2024-06-22 11:29:16.576326+00	1	allaniahmedkr	2	[{"changed": {"fields": ["First name", "Last name"]}}]	4	1
+12	2024-06-22 11:32:40.847163+00	43	Order #43 (Canceled)	2	[{"changed": {"fields": ["Status"]}}]	19	1
 \.
 
 
@@ -1250,6 +1313,7 @@ COPY public.django_content_type (id, app_label, model) FROM stdin;
 19	products	order
 20	products	orderitems
 21	sites	site
+22	products	orderaddress
 \.
 
 
@@ -1296,14 +1360,15 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 36	products	0009_remove_order_session_id_order_uuid	2024-04-07 17:35:46.178084+00
 37	products	0010_alter_order_uuid_alter_orderitems_order	2024-04-07 17:35:46.213893+00
 38	sessions	0001_initial	2024-04-07 17:35:46.24436+00
-45	sites	0001_initial	2024-06-04 06:11:23.610231+00
-46	sites	0002_alter_domain_unique	2024-06-04 06:11:23.619883+00
-47	socialaccount	0001_initial	2024-06-04 06:11:23.706102+00
-48	socialaccount	0002_token_max_lengths	2024-06-04 06:11:23.732406+00
-49	socialaccount	0003_extra_data_default_dict	2024-06-04 06:11:23.744536+00
-50	socialaccount	0004_app_provider_id_settings	2024-06-04 06:11:23.766625+00
-51	socialaccount	0005_socialtoken_nullable_app	2024-06-04 06:11:23.791412+00
-52	socialaccount	0006_alter_socialaccount_extra_data	2024-06-04 06:11:23.811606+00
+51	sites	0001_initial	2024-06-09 16:34:46.770876+00
+52	sites	0002_alter_domain_unique	2024-06-09 16:34:46.792444+00
+53	socialaccount	0001_initial	2024-06-09 16:34:46.959272+00
+54	socialaccount	0002_token_max_lengths	2024-06-09 16:34:47.029709+00
+55	socialaccount	0003_extra_data_default_dict	2024-06-09 16:34:47.054027+00
+56	socialaccount	0004_app_provider_id_settings	2024-06-09 16:34:47.102806+00
+57	socialaccount	0005_socialtoken_nullable_app	2024-06-09 16:34:47.145787+00
+58	socialaccount	0006_alter_socialaccount_extra_data	2024-06-09 16:34:47.188958+00
+59	products	0011_orderaddress	2024-06-20 08:09:44.79342+00
 \.
 
 
@@ -1319,9 +1384,56 @@ nxo5dpldc742erqatsyeoa2mj2g62imz	eyJvcmRlcl91dWlkIjoiYTg0ODAyNzQtOTdmYy00ZTM1LTg
 gd8nsqfmoxougpcdfttsizn7xyvnqd07	eyJvcmRlcl91dWlkIjoiNTVkNTllNWEtNjAyNy00YTFlLWIzMjMtYjllMzEyOGZjNjhlIn0:1ru19c:553Q0dXW4FR_RR2h-ZMQ4OYZw_MXA2dq1osD9004ElU	2024-04-23 02:24:08.947485+00
 6l8xeyifb5f3811oj0nr763ix3uyf9t7	eyJvcmRlcl91dWlkIjoiYzdjZjViNTEtMDEzYi00N2M2LTgyZjItYzhmMmVkMWE3MzQwIn0:1ru19e:sy7LC-6Ns_s_u46qtiMvQliHMbUt9TwSyRjFFiki74M	2024-04-23 02:24:10.548725+00
 7psdzuzo75ju0f0u6abaxycbsittwyim	eyJvcmRlcl91dWlkIjoiZDBmODlhZDctZDQwZS00ZDMxLTllNjctNmJmZmYzNzFkODM5In0:1ruquO:14N3DNUg7y_rpj-9J8fVGCJY1byMpxFzZjYvt2odPNM	2024-04-25 09:39:52.567905+00
-x46qdmcvnae259ht860bsiq6iw9l8xim	eyJvcmRlcl91dWlkIjoiNGFlYzYzOTQtYTY2Ny00YjA3LWIyN2MtOGY5ZTZmZTIxOGNhIn0:1sE70r:mwPF3kj57R1WwI9ZawXkSDrOFAZml-UWBWWbMHA4l1E	2024-06-17 12:42:09.615293+00
-vwemyb1pok8ttn406iqt3f1g4m6sy4wd	eyJvcmRlcl91dWlkIjoiM2EzMzZhYWQtZjI2NC00OWZkLTg2MDUtZWI0NTNjNzdjZDk0In0:1sE70w:U94_bStu5RWcFrr65L3_B36HdbE7ePoXfNTTFfbRjNM	2024-06-17 12:42:14.102445+00
-og2s2zr0xd8a89efh0i4kgsja7md450g	.eJxdjDsOgzAQRO_iOiB_sM2mSy6C1vauQEFGAruKcvcAoknKeTNv3mJZE61DrVMSd8EO2LJ1DUjgpuMQm6BiaDppA2ole2mUuIkBaxmHuu3iqf2xgPFF-Shwng_cYoxLzaU9N1e9tY89US5TxDIt-XlZP1cjbuP-Y0j2MVoOyjMGq6VmdFaiB8vA2iCSDwTEKlkDDoxzCETao1IsXRKfL9FeS2w:1sEBeE:Mtg-ahyHZZN-s2mhU80ocBx4B0VWVa4yHB6Xcg6pKUo	2024-06-17 17:39:06.408505+00
+b1ur1dpd7b6enn91gq0lxxft1q77ebng	eyJvcmRlcl91dWlkIjoiMjFjNjdhYjItNWFmOC00ZTBmLWI0MzAtYWEzNmY3ZWY0NzdhIn0:1rw8lP:B7JIuP8eKp7UHq4LzJxLnb0DncMEEdfxSiNd_5Z8-vU	2024-04-28 22:55:55.140734+00
+24anbexitj7to6lsanwsemqmh1uzq9b6	eyJvcmRlcl91dWlkIjoiMGEwMzg4NTYtMDJlMS00ZDUyLTlkM2YtODgwZmE3YzBkMjUwIn0:1ryCfs:APcwYR0K2sUXEutkdSuch7L9Np2VQqv8sTgfNEU0MoQ	2024-05-04 15:30:44.412656+00
+tuiyxm6a3k3d6cdwb2wbmthzzm7fi8qy	eyJvcmRlcl91dWlkIjoiNWUyYjlkYzQtOGVjMi00YmNjLWFhMjUtMDNjN2Q2MzU3ZDAyIn0:1s1ET3:hdcXExYBglN3XsM51fVxj_buzR1RhEXXG2snBQ5bP3k	2024-05-13 00:02:01.912496+00
+ht5xpyje6m65hhhv9m2sdq1k0p3mb3km	eyJvcmRlcl91dWlkIjoiM2MxYTlkYTEtZTczNy00ODMzLThjNTEtMWQ2OWI4MGM4NGUxIn0:1s1Yi3:berUhuPxQPhBBjuCLm3kYW8M6yTyto3IkMcl-JXh3XY	2024-05-13 21:38:51.303589+00
+mh77saqfnpzlk0luv9yttlr6j2v3sc9j	eyJvcmRlcl91dWlkIjoiMjgwMzk5YzctMjQ3NC00OGJmLWE1ODctMDAyYmQwZGJlMDE0In0:1s3jFv:NJ6e6D9xNsxe749F6Suxa7RNjQGsUnP-o3ezOMvCkz4	2024-05-19 21:18:47.623524+00
+hwev314ium8tspm550ipfa4m8xir0kcb	eyJvcmRlcl91dWlkIjoiMzBiNjUyZjItMDMxYS00Y2IxLTk3MWYtYTAyMjk4NTk4NjJiIn0:1s6yJR:rhPd8UkK7_MTZEwl6mMBAlrNycX5oVZO-SMLfbkQzpI	2024-05-28 19:59:49.528813+00
+9wr9xilemrvwsxu4155wuotfuvcfm5qv	eyJvcmRlcl91dWlkIjoiNzZlOTUwYjItY2ExYy00Y2YxLWIxMzEtZTI0NTIxYjRhOTM0In0:1s7iRB:m_VPrxaqBhVFpNv9HQ2hXxTR_56KQ3thdkpeA0aqPOM	2024-05-30 21:14:53.985942+00
+c4jnlhhnj0skuug3xpe1e9kyf552esbh	eyJvcmRlcl91dWlkIjoiZmFmYzhiZWUtNGE3Yy00NTk4LTkwYmUtYzk5ZjNmYjUwNGZiIn0:1s9BJU:5z2Fpk7zaoL-Kcumtb46c7Dy-qriApa4bEwBLFgrgj4	2024-06-03 22:17:00.549158+00
+83cr6q28yj12on7ses1e82lqmrbfrois	eyJvcmRlcl91dWlkIjoiY2RjZjQ4ZWYtMTVhMy00YmE4LWE3M2QtZmNkMDM0M2ZmZmFhIn0:1sBjXf:EBam2SbYENNIpiPVc4b1Wk39r-OBHjKZgSa28LU9y8M	2024-06-10 23:14:11.28812+00
+uakxn4z25inzoc4jwy6a6x7hxuugux96	eyJvcmRlcl91dWlkIjoiNDY5NDlhZTYtZmVjOC00MTFiLTlmY2QtZWRkMjdhMDJlY2RiIn0:1sCIuy:Bmt_wjSly5j-xKtlw4CIvuXrUomRcU6T5MkTIZY0r_k	2024-06-12 13:00:36.446559+00
+vjg48vs9vgqdc2lm17k9fd0xjpbmoecv	.eJxVjDsOgzAQRO_iOkZ2_FmTLrkI2o8RKMhIgKsodw9BNGiqmd33PmpeJC9draOoh0LgGIwz2rbUag-Bdcq91458MpZ8gADqpjqs29DVdQcPzF43Qn7ncvim6T83yDzXsjXHz3lem-fectlGxm2cy-ukLqoB12H3UPZiJDsyyToiJOBwBx8ji5e-l7gHk29tNtyGJK5PzoZoAe8RgJ36_gBMLkqG:1sCJIs:f87aiphWiE3KWsMpurj4d98kvS3lRZJlzRJ3t551l0s	2024-06-12 13:25:18.058879+00
+99ydchvizh6d6jh3cy9xgoage1yd58qd	eyJvcmRlcl91dWlkIjoiMGM5MDNiNTUtNDVmNS00ODgwLThiY2ItYzFkMjNjOWZmMjhmIn0:1sDJe7:II5bMCMj62Og_6Ytl5UZ7HZJG2V8D_owq2MPAOZ-5NE	2024-06-15 07:59:23.614999+00
+ktu670pz147imhtjs9n0ecn4rvpoboc8	eyJvcmRlcl91dWlkIjoiY2QxMDdhZmEtNjBmMi00YzJmLWE4ODctZDViNDRkZjE4Nzc1In0:1sDJeL:Ke5hNWN3y-AqLbsneyw7LU_KWm26_NjGW7I2WJh4S1c	2024-06-15 07:59:37.807328+00
+w2pf6o841i8774lwps6rse52twuev8rc	eyJvcmRlcl91dWlkIjoiYzcyYjk4NzEtNDFmYS00NTE2LTg0ZGQtNGYyNjBiOWIyOWVkIn0:1sGNoV:59XAeHnrnp6TPAO2SwrnELmMcHArYYNO0e9posJ5SI4	2024-06-23 19:02:47.732553+00
+7700729osay0b7mlr9tb55ve45yw9j4e	eyJvcmRlcl91dWlkIjoiOGViNTUyZjQtNDczOS00ZWVjLTgwOGItN2RlNzU2Yjg5MjNlIn0:1sGXnW:8LwGvBdXKLTNCv29VqymbE8UsXs15k8LJjRp95hIF48	2024-06-24 05:42:26.032402+00
+p7vavdetnkui6fn0g7hyhg1wimkoi238	eyJvcmRlcl91dWlkIjoiODFiMGEwN2MtZmZjNC00YTM4LWIwYmEtZWFmNDUyODE0M2JjIn0:1sHEFt:QFOZu1cQoVtf1WBuag-ivPqQGXGnM9hdC9BYdbcwTyI	2024-06-26 03:02:33.246446+00
+xht5zl3o2f0uf72enr5vr7gzt6n30v1y	eyJvcmRlcl91dWlkIjoiZmQxYzNlMjUtYmI4Mi00NGJkLThhMDctMzY1MWM5NjdkMGI2In0:1sHsa8:_ItaFI3_QuRwdaifcBsxat-9h7XAWX9_m40KRZPBM_I	2024-06-27 22:06:08.648255+00
+sq41sjczla273kvrjf1kmf1wiio7jnr5	eyJvcmRlcl91dWlkIjoiMGE1NTllNjQtNDkwNS00Zjc0LWFmZTgtYWE1MDlhNTE4YzFiIn0:1sHsaP:4R8qj7qI9tAP6XBelF3CZye3V9v5idVwRxu-dholXxE	2024-06-27 22:06:25.825874+00
+e98vkixbgxluz74ypz2rqfxas8j1gqj9	eyJvcmRlcl91dWlkIjoiOTQ0ZjNlOTQtZDQ1Mi00ZTE2LTg1NjUtZDJjYmNhMmMyMWM3In0:1sHsaZ:rr16stJM2EP0INGkZZFHYFO8UNzdC_rK13LTmpCvyZk	2024-06-27 22:06:35.579731+00
+2tyopnqyka7w29wyozh9xvzaysyhmwb8	eyJvcmRlcl91dWlkIjoiOGQ2YjIxMzAtN2M4Ny00N2QyLTgwNmItYmRlNWI2NzI5N2ExIn0:1sJEdn:lYfXPsBp4emHCgNfKyqqFXJdRFesGyxCMTiGs1eaSYI	2024-07-01 15:51:31.66115+00
+c3ypw90pf6abgml3bq2u87q7bzgdyrqe	.eJxVjE0KgzAQhe-SdZWYSeJMd-1FZDJJUCoKalald6-KGzcP3s_3vmpeYlq6UoaonoowBGCvK51zqCwKVxwdVkgGAIP1IWb1UB2Xre_KuoMn1tyzwPJJ01HwOB5xzSJzmbb63Fz1Wr92l6ZtEN6GeXpf1O2q57Xff3RLoUkGiCw5D212BFaM1xYcJUTS0WQw4MQlEAQvwlkj-WQS7Kp-f8YbShs:1sKCus:3NWbH7_nPeLv5-OHyl_g0EFyq00NgxQqLx2ehq1NfIM	2024-07-04 08:13:10.739407+00
+4nny7wgmegpji2y6ei5k7ayg9dcq7p95	eyJvcmRlcl91dWlkIjoiYjJhYmI1NTAtNzI1MS00YjAwLTgyZTktNWE5YWY1ZWNiNTMzIn0:1sKevA:HpLxjzN6hB1fW_anKTTD2JDc9llr5pTby-DgjDS5i0Q	2024-07-05 14:07:20.70026+00
+0wev55bs3eqd1u8bde1w8ksxl4ju49u5	.eJxVj8EOgyAQRP-FczXACrK9tT9iYF2iqcFE4dT034utFy-b7My-yexbrNvI21DKPIq7UOSjcpYb15NpOmTTILvQSAgUouSowIqbGHzJ01D2Cv6xqxY8vTgdhl-WQ2490VpSbn83p723j7pxyjP5PK_peVKXqMnvU82RPQbFGhA7NBb6aBA60lZ2YGpBh3LUETQYMgzkwFJ9RDq0rBnqFJ8vxulKHQ:1sKyyU:twdMAlt6n-a1Fu0Fj1Tqwddet0znJh5GCSldWtU6j20	2024-07-06 11:32:06.077407+00
+2tpavcfrbnj5vw4779nak0v08muearzu	eyJvcmRlcl91dWlkIjoiYjJhNGVhNGEtODk3ZS00ODZkLWJiZGQtZjNiYTYyZWYxOWU2In0:1sNzpF:qfxrEVbt62nboJFM7mLqy9V8V9sGffv4xb7RnIni2Q8	2024-07-14 19:03:01.937103+00
+k1nu7elnh1f48lwhkzsmd0cr8suoik0b	eyJvcmRlcl91dWlkIjoiYjViNWI1NzYtNzE0Ni00NjZlLThkZjQtMmJiYWE4MGJiOGY4In0:1sPVon:cUd5wPGqivUP5DHrcFRnp3Z2arviVxmugCuiDoGjfI8	2024-07-18 23:24:49.960368+00
+9w7f9takftzlew13yu51uyvhunpyspki	eyJvcmRlcl91dWlkIjoiMDU1M2JlNzItYTU4OS00ZTA1LWExNTMtODhmNzAwMmY5NjE5In0:1sQRY0:EEjlIGFrACYaXFHENs8y6Kr7AD1wQrgJueVK0-PPvBM	2024-07-21 13:03:20.674406+00
+vv6r64s6sqzn9pyly7uy1d058luf98hn	eyJvcmRlcl91dWlkIjoiYWIzYzRkZjItYWNhNS00OGJiLWJjYmYtMDU3NjY1MTljMDE1In0:1sSDgn:l4SP7yjE3DwGqZuKfRXJnjh1438W6WVkNaQa-8lnE0k	2024-07-26 10:39:45.879324+00
+3i9qde6df69cm2p5aj47ozfrnx8zo7c0	eyJvcmRlcl91dWlkIjoiNGNjMTZiOTItMWEzNS00NWE3LWEwNjEtNWI4ZTIzNTE3MWQzIn0:1sSQNg:686wWUVNBqck1mPB_4yNdLoITYmtpHimQt3LiuCXCy8	2024-07-27 00:12:52.320861+00
+2tuv0bac52c7q3eml1ga5llfke2vdxcn	eyJvcmRlcl91dWlkIjoiYzg5ZTU2MmUtY2Y5Zi00YmE2LWI4MzUtY2MyMDg1OGEyZjEyIn0:1sSa8Y:kbSwCbYA_k2m8VDZp0PLaTPEpkKAILa2cH-KI1ZDNK4	2024-07-27 10:37:54.093068+00
+uvgr8oa31uahwcmczl4jl5u4w4obhoah	eyJvcmRlcl91dWlkIjoiMGEzOWQ3NjMtNjI0Ni00M2FhLTlmMTYtNTgwNWQ3NDNlMTYyIn0:1sSeF0:c0VkJ8_-JDQKwNPZO5TlWj6U4BQkP1ilXvJyuRyqLmM	2024-07-27 15:00:50.703113+00
+7ndqy4mbqpdl4b9ucsqly120cvax4ztg	.eJxVjj0OgzAMhe-SuaAQJyHu1l4EGccRqAgkSKaqdy8gFhZL7-ez3lcta5S1K2WM6qk0UZ84uMpA4sraGCqMoCuASEYaR64l9VAdlTx0ZdvBE2vuXk_8kfkIaJoOuybmpcy5PjtXvNWvXcmcR6Y8LvP7om6vBtqGY1eLfSMGEC06D21yCJaN1xYcSgioo0lgwLET4ACemZIO6MUI7Ff9_rmiSgU:1sSus2:5DC3pJFspcnmGJliAamqnb0EMs-1_VjPFR4rrnd5sEM	2024-07-28 08:46:14.265883+00
+vg9kqjf5j6l9zaz82rk3gi6c3fvylswq	eyJvcmRlcl91dWlkIjoiOGNmNWZkNWYtOGQ4OS00NzBjLThmYmEtN2MxNzBiOWE2OWFiIn0:1sT4BY:BA7Tvame5f--O3ps3hpVqAbgO_tbDXFnWpXIlhsGbys	2024-07-28 18:43:00.236932+00
+znl42b1nzdns7g6ywswckmzcgy8dpgsr	eyJvcmRlcl91dWlkIjoiZTczMmJhMzYtZjUyMS00MWYwLThhODAtODkwZjU4ZTJhMDk0In0:1sTQnc:xBH9AEbzLrPCYEokhovIgYiR1RFjF4hUQWakh85Ssho	2024-07-29 18:51:48.018993+00
+rlk5zr19keqw0ics4tznum5mr2ocvpwt	eyJvcmRlcl91dWlkIjoiNGMwMjY2NDgtMjk2NS00NTFhLTg5MTItOGI1MzI4OTk2NGE5In0:1sTuNL:ZbDIvlNU7fjrrWAMNs7BGEeXREuQrJJvnM5iHET2UzI	2024-07-31 02:26:39.752349+00
+40cncdh8w4clvd0l89cn4t3r4ou5fx58	eyJvcmRlcl91dWlkIjoiMTNmMzVjYzctMDhiMC00NmNhLWEzOTMtY2U5MDM4NjUzN2RiIn0:1sU9vy:vyi0pz2nB5G7RrfGkG_ri1FtSTQeydc3AgKdyLkVEt8	2024-07-31 19:03:26.696858+00
+2rf2z7b08nbl2beef9q9apifl7xf7yq7	eyJvcmRlcl91dWlkIjoiMWVjMThlYWYtM2JmZi00NjM3LTg5NmUtMDJiMTM1NjYwNDZlIn0:1sUS12:X2xtIyBaF6YVdXE8o7hIqbFHivqlzzYAuMEja0GM6Cs	2024-08-01 14:21:52.524269+00
+4o1yjo25qkifoih2hb43ssixivckib9v	eyJvcmRlcl91dWlkIjoiMmYwNzM3Y2QtMzcxMy00OTc1LThiMzctNGZhN2E0OThhNGI0In0:1sUfyR:37RsMJgCU23DfF_UKBMsRdkLcXI30kpYLX9ATcdbeE8	2024-08-02 05:16:07.412641+00
+p82kpo79fb6waaxtagdnpztjnxr3lct9	eyJvcmRlcl91dWlkIjoiNzE1ZDg2NDEtY2Y1MC00ZTBiLTg2Y2EtMjk3OGVlNDg1ODQ2In0:1sVBFu:BEHZAI_TLLiQcwfNEQCfgxWq4zNlySVR0Ol1__FmFGo	2024-08-03 14:40:14.459188+00
+lqanvlxmya09f88w6no3svsi0jvs3mgb	eyJvcmRlcl91dWlkIjoiOGMyZTFkNzctYWMzMy00Njk0LTkzYjktYTc5MzU5NGYyYTg5In0:1sVLC5:tgqGfNJLILhXbpOaHGPQTHnYlwmQ3PFXs2tr1RCRInw	2024-08-04 01:16:57.304682+00
+mgiheo7tv0b2vn00yg1pfko6ipof1m96	eyJvcmRlcl91dWlkIjoiNjZiNjRiZjEtM2U2Yy00YzQwLTkwMTEtM2Q5YzBiY2Y2ODRkIn0:1sVoax:8dzBRiQYl5U6TXe9wQ1y12D3xXQwvYhPipd3voTpBLE	2024-08-05 08:40:35.715118+00
+3zmq64a43yyyu6nipanfbmbwk4hgsoem	eyJvcmRlcl91dWlkIjoiNjMyYzc3ODktNTAxOC00NzU3LTgwYzgtM2NhMDBhMTE0ZjE5In0:1sWBKo:O3Dw9aT4xi7235qoafLRF5KR3Jzg8BZUgcK5vIfejkU	2024-08-06 08:57:26.109018+00
+72av75p20rfkjeyslj4dmc9pdch36eva	eyJvcmRlcl91dWlkIjoiMGQxYTExNGYtOTJlYS00ZDYwLWFhYmMtMTQyNzUxMzFiZWZiIn0:1sWJhM:0MZPQrsMrwNOQ1GMRV--RT3hjDxAmGhWZh6lUm5Xwws	2024-08-06 17:53:16.008495+00
+my3m25selns8umvalf0pvsoeu2lr862l	eyJvcmRlcl91dWlkIjoiZjVjMzdkNDctYTRkNC00M2NlLWI2YWYtOTE3OGQ4MWExYjU1In0:1sWQZz:S2wFy8PFqI2cKTgxTBSPOvvdmoE7mt309tCeKCkWmLg	2024-08-07 01:14:07.815133+00
+iy6y612mn2qgz3du2od94mke7gqw88xy	eyJvcmRlcl91dWlkIjoiZTRiNDdmZTAtZWVmMC00ODJkLTliMzgtNzU3ZjE4MGNhNjhlIn0:1sWXmm:S5hLJo6yZaHWdalt0F8TpRVP8CERW6NQPRnfcAViXV0	2024-08-07 08:55:48.235623+00
+i33exqrtbooryf9vh7e2pj485f8nx3y5	eyJvcmRlcl91dWlkIjoiYjlhMTFkMGUtMTk0OS00YjdlLWI3YjAtMTQyMmZiYThlZTNkIn0:1sWj7Q:haY2OCxgb5ZnnASuEjfCoHT2FeJv9I9juHfyiK1pDCQ	2024-08-07 21:01:52.760052+00
+213c4hk56b19dlxm0c43eqokadgfs8ld	eyJvcmRlcl91dWlkIjoiM2M2ZGQ3ZWUtNGI3Ni00MDllLWEwOGMtNWYxZDU1OTFiNzY0In0:1sWtP4:_xYCDYR0upu-OUw8gbGqD2GXWfjpIBu2M5t_LuQpzoo	2024-08-08 08:00:46.407934+00
+tb2xfli908l0qkw984em3i2tq2t36d5e	eyJvcmRlcl91dWlkIjoiM2NmYzdmMjYtOTU5Ny00YmRkLTk2MmMtNzNmNmVkYjUzYjY3In0:1sX7Dz:I3kp_EVcFhcT3ocTq6t5uA4jTYsxMX-3NW-xqz8UzVo	2024-08-08 22:46:15.15367+00
+8xyzlamwu10zs194cpidizrz4con9g3t	eyJvcmRlcl91dWlkIjoiMDcyZDNmZjItNjRkZi00NjhkLWIzMGUtZDliYWNjNjI5YTE2In0:1sXTVs:JRR11fu4QmrarDaeHjscrGWvfd57TJxBoAFTuMda8xM	2024-08-09 22:34:12.74496+00
+0c74znelo9x0tkakypec2go4gl32of1h	eyJvcmRlcl91dWlkIjoiMWVlYzU4ZDgtMGNjMy00YjMzLWFlNjMtMjExNWM1ZGEzNzA5In0:1sXqLM:nC_p7fESo5qCm3ASdGdkKQDlootdT4VCTJmU2yHiKoM	2024-08-10 22:56:52.213157+00
+23s6ymjyttv4rvixj2ni142asl4x4rlp	eyJvcmRlcl91dWlkIjoiZTRjMTZhZjAtNzg1My00ZTg0LWE4NWItOTNhNzE1NzE2ODJmIn0:1sY2Zw:dEihxjAp0O-MpQz-2Q7MA4z31hupLLUgEwhAoD1XaKo	2024-08-11 12:00:44.428621+00
 \.
 
 
@@ -1330,7 +1442,7 @@ og2s2zr0xd8a89efh0i4kgsja7md450g	.eJxdjDsOgzAQRO_iOiB_sM2mSy6C1vauQEFGAruKcvcAok
 --
 
 COPY public.django_site (id, domain, name) FROM stdin;
-1	example.com	example.com
+1	shop.effectivewebapp.com	Shoppingify
 \.
 
 
@@ -1544,14 +1656,78 @@ COPY public.products_file (id, name, file, product_id) FROM stdin;
 --
 
 COPY public.products_order (id, order_date, total_amount, status, user_id, uuid) FROM stdin;
-1	2024-04-08 00:35:53.905465+00	\N	draft	1	d27d86b4-fcd1-4854-bf10-cd78c61068f7
 2	2024-04-08 00:57:44.287664+00	\N	draft	\N	df478e0d-8f8a-4eca-9f09-2f52007c1f75
 3	2024-04-08 00:57:57.312006+00	\N	draft	\N	a8480274-97fc-4e35-8468-5807cf69fd04
 4	2024-04-09 02:24:08.935389+00	\N	draft	\N	55d59e5a-6027-4a1e-b323-b9e3128fc68e
 5	2024-04-09 02:24:10.538672+00	\N	draft	\N	c7cf5b51-013b-47c6-82f2-c8f2ed1a7340
 6	2024-04-11 09:39:52.554506+00	\N	draft	\N	d0f89ad7-d40e-4d31-9e67-6bfff371d839
-7	2024-06-03 12:42:09.58361+00	\N	draft	\N	4aec6394-a667-4b07-b27c-8f9e6fe218ca
-8	2024-06-03 12:42:14.092371+00	\N	draft	\N	3a336aad-f264-49fd-8605-eb453c77cd94
+7	2024-04-14 22:55:55.12744+00	\N	draft	\N	21c67ab2-5af8-4e0f-b430-aa36f7ef477a
+8	2024-04-20 15:30:44.394487+00	\N	draft	\N	0a038856-02e1-4d52-9d3f-880fa7c0d250
+9	2024-04-29 00:02:01.808216+00	\N	draft	\N	5e2b9dc4-8ec2-4bcc-aa25-03c7d6357d02
+10	2024-04-29 21:38:51.284723+00	\N	draft	\N	3c1a9da1-e737-4833-8c51-1d69b80c84e1
+11	2024-05-05 21:18:47.598071+00	\N	draft	\N	280399c7-2474-48bf-a587-002bd0dbe014
+12	2024-05-14 19:59:49.514207+00	\N	draft	\N	30b652f2-031a-4cb1-971f-a0229859862b
+13	2024-05-16 21:14:53.971124+00	\N	draft	\N	76e950b2-ca1c-4cf1-b131-e24521b4a934
+14	2024-05-20 22:17:00.531543+00	\N	draft	\N	fafc8bee-4a7c-4598-90be-c99f3fb504fb
+15	2024-05-27 23:14:11.278733+00	\N	draft	\N	cdcf48ef-15a3-4ba8-a73d-fcd0343fffaa
+16	2024-05-29 13:00:36.436108+00	\N	draft	\N	46949ae6-fec8-411b-9fcd-edd27a02ecdb
+20	2024-06-01 06:11:06.790005+00	\N	draft	\N	d219171e-9b64-447a-b9ba-ab6f4f40fad2
+22	2024-06-01 07:59:23.604203+00	\N	draft	\N	0c903b55-45f5-4880-8bcb-c1d23c9ff28f
+23	2024-06-01 07:59:37.796816+00	\N	draft	\N	cd107afa-60f2-4c2f-a887-d5b44df18775
+24	2024-06-09 13:22:49.104704+00	\N	draft	\N	e360a58f-08f6-446c-9c43-a3521afcef32
+29	2024-06-09 19:02:47.721733+00	\N	draft	\N	c72b9871-41fa-4516-84dd-4f260b9b29ed
+30	2024-06-10 05:42:26.020602+00	\N	draft	\N	8eb552f4-4739-4eec-808b-7de756b8923e
+31	2024-06-12 03:02:33.236303+00	\N	draft	\N	81b0a07c-ffc4-4a38-b0ba-eaf4528143bc
+32	2024-06-13 22:06:08.636752+00	\N	draft	\N	fd1c3e25-bb82-44bd-8a07-3651c967d0b6
+33	2024-06-13 22:06:25.815032+00	\N	draft	\N	0a559e64-4905-4f74-afe8-aa509a518c1b
+34	2024-06-13 22:06:35.54591+00	\N	draft	\N	944f3e94-d452-4e16-8565-d2cbca2c21c7
+35	2024-06-17 15:51:31.651939+00	\N	draft	\N	8d6b2130-7c87-47d2-806b-bde5b67297a1
+38	2024-06-20 08:15:33.637817+00	\N	draft	1	8b26d5f9-f063-444c-bab0-a2aa58ff5919
+1	2024-04-08 00:35:53.905465+00	6173.91	shipped	1	d27d86b4-fcd1-4854-bf10-cd78c61068f7
+39	2024-06-21 14:07:20.685747+00	\N	draft	\N	b2abb550-7251-4b00-82e9-5a9af5ecb533
+40	2024-06-22 09:42:56.719128+00	689.00	processing	2	b126deef-1e1b-4ef0-af0a-78d3350c0684
+41	2024-06-22 10:06:31.097193+00	\N	draft	2	306ae5fd-8468-4bdd-824d-87965fa01bae
+36	2024-06-17 15:52:02.204072+00	2921.60	delivered	2	\N
+44	2024-06-22 11:31:43.585195+00	\N	draft	3	d025dc6d-5b29-4517-9ebd-77ebd7d0133a
+43	2024-06-22 11:30:20.774239+00	111.30	canceled	3	\N
+46	2024-06-30 19:03:01.924798+00	\N	draft	\N	b2a4ea4a-897e-486d-bbdd-f3ba62ef19e6
+47	2024-07-04 23:24:49.949134+00	\N	draft	\N	b5b5b576-7146-466e-8df4-2bbaa80bb8f8
+48	2024-07-07 13:03:20.65158+00	\N	draft	\N	0553be72-a589-4e05-a153-88f7002f9619
+49	2024-07-12 10:39:45.868998+00	\N	draft	\N	ab3c4df2-aca5-48bb-bcbf-05766519c015
+50	2024-07-13 00:12:52.310928+00	\N	draft	\N	4cc16b92-1a35-45a7-a061-5b8e235171d3
+51	2024-07-13 10:37:54.078243+00	\N	draft	\N	c89e562e-cf9f-4ba6-b835-cc20858a2f12
+52	2024-07-13 15:00:50.683244+00	\N	draft	\N	0a39d763-6246-43aa-9f16-5805d743e162
+54	2024-07-14 18:43:00.226687+00	\N	draft	\N	8cf5fd5f-8d89-470c-8fba-7c170b9a69ab
+55	2024-07-15 18:51:48.003822+00	\N	draft	\N	e732ba36-f521-41f0-8a80-890f58e2a094
+56	2024-07-17 02:26:39.741157+00	\N	draft	\N	4c026648-2965-451a-8912-8b53289964a9
+57	2024-07-17 19:03:26.684941+00	\N	draft	\N	13f35cc7-08b0-46ca-a393-ce90386537db
+58	2024-07-18 14:21:52.512966+00	\N	draft	\N	1ec18eaf-3bff-4637-896e-02b13566046e
+59	2024-07-19 05:16:07.400583+00	\N	draft	\N	2f0737cd-3713-4975-8b37-4fa7a498a4b4
+60	2024-07-20 14:40:14.449524+00	\N	draft	\N	715d8641-cf50-4e0b-86ca-2978ee485846
+61	2024-07-21 01:16:57.294994+00	\N	draft	\N	8c2e1d77-ac33-4694-93b9-a793594f2a89
+62	2024-07-22 08:40:35.705477+00	\N	draft	\N	66b64bf1-3e6c-4c40-9011-3d9c0bcf684d
+63	2024-07-23 08:57:26.09942+00	\N	draft	\N	632c7789-5018-4757-80c8-3ca00a114f19
+64	2024-07-23 17:53:15.997747+00	\N	draft	\N	0d1a114f-92ea-4d60-aabc-14275131befb
+65	2024-07-24 01:14:07.804388+00	\N	draft	\N	f5c37d47-a4d4-43ce-b6af-9178d81a1b55
+66	2024-07-24 08:55:48.224966+00	\N	draft	\N	e4b47fe0-eef0-482d-9b38-757f180ca68e
+67	2024-07-24 21:01:52.750787+00	\N	draft	\N	b9a11d0e-1949-4b7e-b7b0-1422fba8ee3d
+68	2024-07-25 08:00:46.398955+00	\N	draft	\N	3c6dd7ee-4b76-409e-a08c-5f1d5591b764
+69	2024-07-25 22:46:15.14624+00	\N	draft	\N	3cfc7f26-9597-4bdd-962c-73f6edb53b67
+70	2024-07-26 22:34:12.736306+00	\N	draft	\N	072d3ff2-64df-468d-b30e-d9bacc629a16
+71	2024-07-27 22:56:52.200157+00	\N	draft	\N	1eec58d8-0cc3-4b33-ae63-2115c5da3709
+72	2024-07-28 12:00:44.417105+00	\N	draft	\N	e4c16af0-7853-4e84-a85b-93a71571682f
+\.
+
+
+--
+-- Data for Name: products_orderaddress; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.products_orderaddress (id, street, city, zip_code, country, phone, order_id) FROM stdin;
+1	123 Main Street	Spin	12345	United States	+1 (555) 123-4567	1
+3	MR MUSTAPHA ALLANI RUE OM MAKTOUM SAHBI 1 N32	KAIROUAN	3140	Tunisia	+21629667239	40
+2	123 Main Street	Springfield	62701	United States	+1 217-555-1234	36
+4	MR MUSTAPHA ALLANI RUE OM MAKTOUM SAHBI 1 N32	KAIROUAN	3140	Tunisia	+21629667239	43
 \.
 
 
@@ -1561,8 +1737,29 @@ COPY public.products_order (id, order_date, total_amount, status, user_id, uuid)
 
 COPY public.products_orderitems (id, quantity, subtotal, order_id, product_id) FROM stdin;
 1	1	\N	6	8
-2	1	\N	8	8
-3	1	\N	1	9
+2	1	\N	7	9
+3	1	\N	7	7
+4	1	\N	10	9
+5	1	\N	10	7
+29	2	\N	38	8
+31	1	\N	38	14
+7	1	\N	10	6
+10	1	189.99	1	7
+9	2	459.70	1	13
+12	1	689.00	1	8
+13	2	2062.16	1	19
+14	1	43.05	1	36
+8	3	2730.00	1	9
+19	1	689.00	40	8
+15	1	910.00	36	9
+16	1	1055.90	36	12
+17	2	955.70	36	10
+20	1	34.76	43	27
+21	2	76.54	43	33
+23	3	\N	38	10
+26	2	\N	38	19
+27	1	\N	48	8
+28	1	\N	52	8
 \.
 
 
@@ -1649,7 +1846,7 @@ COPY public.socialaccount_socialtoken (id, token, token_secret, expires_at, acco
 -- Name: account_emailaddress_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.account_emailaddress_id_seq', 1, false);
+SELECT pg_catalog.setval('public.account_emailaddress_id_seq', 3, true);
 
 
 --
@@ -1677,7 +1874,7 @@ SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.auth_permission_id_seq', 84, true);
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 88, true);
 
 
 --
@@ -1691,7 +1888,7 @@ SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
 -- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.auth_user_id_seq', 1, true);
+SELECT pg_catalog.setval('public.auth_user_id_seq', 3, true);
 
 
 --
@@ -1712,21 +1909,21 @@ SELECT pg_catalog.setval('public.core_commandhistory_id_seq', 1, false);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 3, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 12, true);
 
 
 --
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_content_type_id_seq', 21, true);
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 22, true);
 
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 52, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 59, true);
 
 
 --
@@ -1761,14 +1958,21 @@ SELECT pg_catalog.setval('public.products_file_id_seq', 145, true);
 -- Name: products_order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.products_order_id_seq', 9, true);
+SELECT pg_catalog.setval('public.products_order_id_seq', 72, true);
+
+
+--
+-- Name: products_orderaddress_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.products_orderaddress_id_seq', 4, true);
 
 
 --
 -- Name: products_orderitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.products_orderitems_id_seq', 3, true);
+SELECT pg_catalog.setval('public.products_orderitems_id_seq', 32, true);
 
 
 --
@@ -2060,6 +2264,22 @@ ALTER TABLE ONLY public.products_order
 
 ALTER TABLE ONLY public.products_order
     ADD CONSTRAINT products_order_uuid_key UNIQUE (uuid);
+
+
+--
+-- Name: products_orderaddress products_orderaddress_order_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products_orderaddress
+    ADD CONSTRAINT products_orderaddress_order_id_key UNIQUE (order_id);
+
+
+--
+-- Name: products_orderaddress products_orderaddress_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products_orderaddress
+    ADD CONSTRAINT products_orderaddress_pkey PRIMARY KEY (id);
 
 
 --
@@ -2491,6 +2711,14 @@ ALTER TABLE ONLY public.products_file
 
 ALTER TABLE ONLY public.products_order
     ADD CONSTRAINT products_order_user_id_dfb540d8_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: products_orderaddress products_orderaddress_order_id_0a96d41e_fk_products_order_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products_orderaddress
+    ADD CONSTRAINT products_orderaddress_order_id_0a96d41e_fk_products_order_id FOREIGN KEY (order_id) REFERENCES public.products_order(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
