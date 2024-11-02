@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   db:
@@ -9,32 +9,36 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
-      - ./db:/app  
+      - ./db:/app
       - ./db/shop_db_init.sql:/docker-entrypoint-initdb.d/shop_db_init.sql
       - postgres_data:/var/lib/postgresql/data
 
   shop_back:
     container_name: shop_back
     build:
-      context: ./shop_back 
+      context: ./shop_back
       args:
-        DEV_BUILD: True 
-    env_file: ./shop_back/.env 
+        DEV_BUILD: True
+    env_file: ./shop_back/.env
     depends_on:
       - db
     volumes:
-      - ./shop_back:/app  
+      - ./shop_back:/app
+    ports:
+      - "8000:8000"
     environment:
       - PYTHONUNBUFFERED=1
 
   shop_front:
     container_name: shop_front
     build:
-      context: ./shop_front  
-    env_file: ./shop_front/.env 
+      context: ./shop_front
+    env_file: ./shop_front/.env
     volumes:
-      - ./shop_front:/app 
+      - ./shop_front:/app
       - /app/node_modules # ensures that the node_modules is completely isolated from the host's filesystem
+    ports:
+      - "3000:3000"
 
   nginx:
     container_name: shop_nginx
@@ -46,16 +50,16 @@ services:
     depends_on:
       - shop_back
       - shop_front
-  
+
   shop_e2e:
     container_name: shop_e2e
     build:
       context: ./shop_e2e
+    env_file: ./shop_e2e/.env
     depends_on:
       - shop_front
     volumes:
       - ./shop_e2e:/app
-    command: ["sleep", "infinity"]
 
 volumes:
   postgres_data:
