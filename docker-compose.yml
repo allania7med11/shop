@@ -58,6 +58,7 @@ services:
     env_file: ./shop_e2e/.env
     depends_on:
       - shop_front
+    profiles: ["test"]
 
 volumes:
   postgres_data:
