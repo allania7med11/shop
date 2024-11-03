@@ -58,6 +58,9 @@ services:
     env_file: ./shop_e2e/.env
     depends_on:
       - shop_front
+    volumes:
+      - ./shop_e2e:/app
+      - /app/node_modules # ensures that the node_modules is completely isolated from the host's filesystem
     profiles: ["test"]
 
 volumes:
