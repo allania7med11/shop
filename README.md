@@ -65,22 +65,68 @@ docker-compose --profile test up shop_e2e
 \```
 
 This command runs all Playwright tests in the frontend testing suite. These tests simulate backend responses to focus on the frontend application, ensuring it functions as expected.
-### 6. Monitoring with Sentry
 
-To ensure reliable monitoring and prompt issue tracking in production, **Sentry** is integrated into the backend. This setup captures errors and performance issues, providing real-time insights into any problems users may encounter.
+## Documentation
 
-#### Sentry Integration
+The software's API is well-documented and accessible via Swagger at the following URL:
 
-In the backend, Sentry is configured to monitor errors and capture debugging information with the **`SENTRY_DSN`** environment variable. This variable holds the unique DSN (Data Source Name) that links the backend to your Sentry project. When `SENTRY_DSN` is set in production or QA environments, Sentry will automatically log and report any errors or issues that occur, enabling developers to track and resolve them quickly.
+- **API Documentation**: [https://shop.effectivewebapp.com/api/](https://shop.effectivewebapp.com/api/)
 
-To configure Sentry in production:
-
-1. Set the **`SENTRY_DSN`** variable in the backend’s environment settings or `.env` file.
-2. Ensure that error logging is active, especially in production and QA environments, to capture all relevant issues.
-
-With Sentry in place, the backend will automatically monitor for exceptions, helping to maintain a stable and reliable application by alerting the team to any issues as they arise in production.
+This documentation provides a comprehensive overview of all available endpoints, request parameters, and response formats, making it easy for developers to understand and integrate with the API.
 
 
+## Continuous Integration (CI)
+
+This project follows best practices in **Continuous Integration (CI)** to ensure code quality and consistency throughout the development process. These CI tools and practices reflect a commitment to delivering reliable software and maintaining professional standards, essential for high-impact roles.
+
+### Frontend CI
+
+For the frontend, **Husky** and **Lint-Staged** are used to enforce code quality checks. Husky runs linting commands at the commit stage, ensuring that any issues are caught early in the development cycle. **Lint-Staged** optimizes this by running checks only on staged files, keeping the process efficient. **ESLint** and **Prettier** provide consistent formatting and error detection, especially with TypeScript support, helping to maintain high standards in frontend code.
+
+### Backend CI
+
+The backend uses **pre-commit hooks** with tools like **isort** for organizing imports, **Black** for enforcing formatting, and **Flake8** for syntax checking. These tools ensure that each commit adheres to best practices, making the backend codebase clean, consistent, and easier to maintain.
+
+### Continuous Delivery (CD)
+
+This project follows **Continuous Delivery (CD)** practices, with automation managed by **Ansible** in a dedicated deployment repository: [deploy](https://github.com/allania7med11/deploy). The CD pipeline utilizes a **staging environment** on **Multipass** to replicate production, ensuring reliable testing and validation before deployment to production.
+
+#### Automated Deployment Pipeline
+
+The deployment process includes the following automated steps:
+
+1. **Environment Setup**: Ansible provisions a **staging environment** on **Multipass** that mirrors production, allowing for pre-deployment testing in a controlled, production-like environment.
+
+2. **Repository Management**: Ansible clones the necessary repositories, ensuring the latest code is ready for deployment.
+
+3. **Building Docker Images**: Using Docker, Ansible builds images for both frontend and backend services, maintaining consistency between staging and production environments.
+
+4. **Project Execution**: Ansible runs the backend and frontend services in staging and generates static files for the frontend.
+
+5. **Testing**: With the services running in staging, tests are executed to verify functionality, ensuring that updates work as expected without regressions.
+
+6. **Artifact Generation**: If tests pass, the backend Docker image is pushed to **Docker Hub**, and the frontend static files are uploaded to **Google Drive**.
+
+7. **Staging and Production Updates**:
+   - **Staging**: After successful testing in staging, the new Docker image and static files are deployed for final review.
+   - **Production**: Once staging verification is complete, Ansible handles the production update by:
+     - Pulling the backend image from Docker Hub and updating the backend container in production.
+     - Fetching and deploying the latest frontend static files from Google Drive.
+
+#### Semaphore UI Integration
+
+The project also integrates **Semaphore UI** to simplify the management of various tasks in the deployment process. Semaphore provides an accessible interface for handling tasks such as database backups and managing deployment stages, ensuring that maintenance and operational tasks can be easily executed as needed.
+
+By using Ansible, Docker, and Semaphore, this pipeline provides a comprehensive and automated solution for continuous delivery, reflecting best practices essential for high-quality, professional software delivery.
+
+
+
+## Monitoring and Error Tracking
+
+For production monitoring, **Sentry** is integrated into the backend using the **SENTRY_DSN** environment variable. This setup allows for real-time tracking of errors, providing insights into issues as they arise in production. By monitoring for unexpected errors and performance issues, Sentry enables rapid response to any problems, helping maintain a smooth user experience.
+
+## Project Links
+- **Deployment**: [https://shop.effectivewebapp.com/](https://shop.effectivewebapp.com/)
 
 
 
