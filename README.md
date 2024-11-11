@@ -34,9 +34,9 @@ Each project requires a `.env` file with specific environment variables. Please 
 
 To run the project with Docker, ensure all necessary `.env` files are configured as described in each repository’s README, and execute the following command from the project root:
 
-\```bash
+``bash
 docker-compose up
-\```
+``
 
 This will start the following services:
 
@@ -50,9 +50,9 @@ This will start the following services:
 
 To execute backend tests with pytest, use the following command within the `shop_back` container:
 
-\```bash
+``bash
 docker container exec -it shop_back pytest
-\```
+``
 
 This command will run all tests defined in the Django backend.
 
@@ -60,9 +60,9 @@ This command will run all tests defined in the Django backend.
 
 To run frontend end-to-end tests with Playwright, use the following command:
 
-\```bash
+``bash
 docker-compose --profile test up shop_e2e
-\```
+``
 
 This command runs all Playwright tests in the frontend testing suite. These tests simulate backend responses to focus on the frontend application, ensuring it functions as expected.
 
