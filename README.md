@@ -87,11 +87,11 @@ For the frontend, **Husky** and **Lint-Staged** are used to enforce code quality
 
 The backend uses **pre-commit hooks** with tools like **isort** for organizing imports, **Black** for enforcing formatting, and **Flake8** for syntax checking. These tools ensure that each commit adheres to best practices, making the backend codebase clean, consistent, and easier to maintain.
 
-### Continuous Delivery (CD)
+## Continuous Delivery (CD)
 
 This project follows **Continuous Delivery (CD)** practices, with automation managed by **Ansible** in a dedicated deployment repository: [deploy](https://github.com/allania7med11/deploy). The CD pipeline utilizes a **staging environment** on **Multipass** to replicate production, ensuring reliable testing and validation before deployment to production.
 
-#### Automated Deployment Pipeline
+### Automated Deployment Pipeline
 
 The deployment process includes the following automated steps:
 
@@ -113,7 +113,7 @@ The deployment process includes the following automated steps:
      - Pulling the backend image from Docker Hub and updating the backend container in production.
      - Fetching and deploying the latest frontend static files from Google Drive.
 
-#### Semaphore UI Integration
+### Semaphore UI Integration
 
 The project also integrates **Semaphore UI** to simplify the management of various tasks in the deployment process. Semaphore provides an accessible interface for handling tasks such as database backups and managing deployment stages, ensuring that maintenance and operational tasks can be easily executed as needed.
 
