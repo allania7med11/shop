@@ -65,6 +65,21 @@ docker-compose --profile test up shop_e2e
 \```
 
 This command runs all Playwright tests in the frontend testing suite. These tests simulate backend responses to focus on the frontend application, ensuring it functions as expected.
+### 6. Monitoring with Sentry
+
+To ensure reliable monitoring and prompt issue tracking in production, **Sentry** is integrated into the backend. This setup captures errors and performance issues, providing real-time insights into any problems users may encounter.
+
+#### Sentry Integration
+
+In the backend, Sentry is configured to monitor errors and capture debugging information with the **`SENTRY_DSN`** environment variable. This variable holds the unique DSN (Data Source Name) that links the backend to your Sentry project. When `SENTRY_DSN` is set in production or QA environments, Sentry will automatically log and report any errors or issues that occur, enabling developers to track and resolve them quickly.
+
+To configure Sentry in production:
+
+1. Set the **`SENTRY_DSN`** variable in the backend’s environment settings or `.env` file.
+2. Ensure that error logging is active, especially in production and QA environments, to capture all relevant issues.
+
+With Sentry in place, the backend will automatically monitor for exceptions, helping to maintain a stable and reliable application by alerting the team to any issues as they arise in production.
+
 
 
 
