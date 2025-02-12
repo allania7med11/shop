@@ -12,6 +12,9 @@ services:
       - ./db:/app
       - ./db/shop_db_init.sql:/docker-entrypoint-initdb.d/shop_db_init.sql
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
 
   shop_back:
     container_name: shop_back
