@@ -53,6 +53,20 @@ services:
     depends_on:
       - shop_back
       - shop_front
+  
+  shop_back_test:
+    container_name: shop_back_test
+    build:
+      context: ./shop_back
+      args:
+        DEV_BUILD: True
+    env_file: ./shop_back/.env
+    volumes:
+      - ./shop_back:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ENVIRONMENT=test  # Overwrites the ENVIRONMENT variable
+    profiles: ["test"]
 
   shop_e2e:
     container_name: shop_e2e
