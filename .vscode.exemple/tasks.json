@@ -27,6 +27,21 @@
                 "panel": "shared",
                 "clear": true
             }
-        }
+        },
+        {
+            "label": "Load Database",
+            "type": "shell",
+            "command": "docker exec -i shop_db psql -U postgres -d postgres -c 'DROP DATABASE IF EXISTS shop_db;' -c 'CREATE DATABASE shop_db;' && docker exec -i shop_db psql -U postgres -d shop_db -f /app/shop_db_init.sql",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true
+            }
+        }        
     ]
 }
