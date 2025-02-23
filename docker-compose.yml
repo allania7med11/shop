@@ -53,6 +53,19 @@ services:
     depends_on:
       - shop_back
       - shop_front
+    
+  nginx_prod:
+    container_name: shop_nginx_prod
+    image: nginx
+    volumes:
+      - ./nginx/nginx.prod.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./shop_front/shop_front:/var/www/shop_front:ro
+      - ./shop_back/shop_back_static:/var/www/shop_back_static:ro
+    ports:
+      - "4001:80"
+    depends_on:
+      - shop_back
+      - shop_front
   
   shop_back_test:
     container_name: shop_back_test
