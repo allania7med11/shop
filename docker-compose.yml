@@ -70,10 +70,10 @@ services:
       - ./shop_front/shop_front:/var/www/shop_front:ro
       - ./shop_back/shop_back_static:/var/www/shop_back_static:ro
     ports:
-      - "4001:80"
+      - "4000:80"
     depends_on:
       - shop_back
-      - shop_front
+    profiles: ["prod"]
   
   shop_back_test:
     container_name: shop_back_test
