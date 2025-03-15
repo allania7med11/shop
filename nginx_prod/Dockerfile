@@ -1,24 +1,24 @@
-# Use official Nginx image as the base
+# Use the official Nginx image as the base
 FROM nginx:latest
 
 # Set working directory
 WORKDIR /etc/nginx
 
 # Copy the production Nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx_prod/nginx.conf /etc/nginx/nginx.conf
 
-# Create directories for static files
+# Ensure directories exist for serving static files
 RUN mkdir -p /var/www/shop_front /var/www/shop_back_static
 
 # Copy static files for frontend and backend
-COPY ../shop_front/shop_front /var/www/shop_front
-COPY ../shop_back/shop_back_static /var/www/shop_back_static
+COPY shop_front/shop_front /var/www/shop_front
+COPY shop_back/shop_back_static /var/www/shop_back_static
 
 # Set appropriate permissions
 RUN chmod -R 755 /var/www/shop_front /var/www/shop_back_static
 
-# Expose Nginx port
+# Expose the default Nginx port
 EXPOSE 80
 
-# Start Nginx
+# Start Nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]
