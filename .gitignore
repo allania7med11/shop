@@ -5,3 +5,4 @@ shop_e2e
 .vscode
 *.log
 backup.sql
+.env

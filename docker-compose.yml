@@ -25,6 +25,7 @@ services:
 
   shop_back:
     container_name: shop_back
+    image: allania7med11/shop_back:latest 
     build:
       context: ./shop_back
       args:
@@ -64,6 +65,7 @@ services:
     
   nginx_prod:
     container_name: shop_nginx_prod
+    image: allania7med11/shop_nginx_prod:latest 
     build:
       context: .
       dockerfile: nginx_prod/Dockerfile
