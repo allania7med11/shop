@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 services:
   db:
@@ -25,6 +25,7 @@ services:
 
   shop_back:
     container_name: shop_back
+    image: allania7med11/shop_back:latest 
     build:
       context: ./shop_back
       args:
@@ -64,16 +65,22 @@ services:
     
   nginx_prod:
     container_name: shop_nginx_prod
-    image: nginx
-    volumes:
-      - ./nginx/nginx.prod.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./shop_front/shop_front:/var/www/shop_front:ro
-      - ./shop_back/shop_back_static:/var/www/shop_back_static:ro
+    image: allania7med11/shop_nginx_prod:latest 
+    build:
+      context: .
+      dockerfile: nginx_prod/Dockerfile
     ports:
-      - "4000:80"
+      - "4010:80"
+    volumes:
+      - ./nginx_prod/nginx.conf:/etc/nginx/nginx.conf
+      - ./shop_front/shop_front:/var/www/shop_front
+      - ./shop_back/shop_back_static:/var/www/shop_back_static
+      - ./nginx_prod/log:/var/log/nginx
     depends_on:
-      - shop_back
-    profiles: ["prod"]
+      shop_back:
+        condition: service_started
+    profiles:
+      - prod
   
   shop_back_test:
     container_name: shop_back_test
@@ -94,8 +101,6 @@ services:
     build:
       context: ./shop_e2e
     env_file: ./shop_e2e/.env
-    depends_on:
-      - shop_front
     volumes:
       - ./shop_e2e:/app
       - /app/node_modules # ensures that the node_modules is completely isolated from the host's filesystem
