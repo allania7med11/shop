@@ -1,5 +1,21 @@
 version: "3.8"
 
+x-base-common: &base-common
+  image: allania7med11/shop_back:latest
+  build:
+    context: ./shop_back
+    args:
+      DEV_BUILD: True
+  volumes:
+    - ./shop_back:/app
+  env_file:
+    - ./shop_back/.env
+  environment:
+    - PYTHONUNBUFFERED=1
+  depends_on:
+    - db
+    - redis
+
 services:
   db:
     container_name: shop_db
@@ -14,7 +30,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5433:5432"
-    
+
   redis:
     container_name: shop_redis
     image: redis:alpine
@@ -22,24 +38,17 @@ services:
     ports:
       - "6379:6379"
 
-
   shop_back:
     container_name: shop_back
-    image: allania7med11/shop_back:latest 
-    build:
-      context: ./shop_back
-      args:
-        DEV_BUILD: True
-    env_file: ./shop_back/.env
-    depends_on:
-      - db
-      - redis
-    volumes:
-      - ./shop_back:/app
+    <<: *base-common
     ports:
       - "8000:8000"
+
+  shop_worker:
+    container_name: shop_worker
+    <<: *base-common
     environment:
-      - PYTHONUNBUFFERED=1
+      - ENVIRONMENT=celery
 
   shop_front:
     container_name: shop_front
@@ -62,10 +71,10 @@ services:
     depends_on:
       - shop_back
       - shop_front
-    
+
   nginx_prod:
     container_name: shop_nginx_prod
-    image: allania7med11/shop_nginx_prod:latest 
+    image: allania7med11/shop_nginx_prod:latest
     build:
       context: .
       dockerfile: nginx_prod/Dockerfile
@@ -81,19 +90,12 @@ services:
         condition: service_started
     profiles:
       - prod
-  
+
   shop_back_test:
     container_name: shop_back_test
-    build:
-      context: ./shop_back
-      args:
-        DEV_BUILD: True
-    env_file: ./shop_back/.env
-    volumes:
-      - ./shop_back:/app
+    <<: *base-common
     environment:
-      - PYTHONUNBUFFERED=1
-      - ENVIRONMENT=test  # Overwrites the ENVIRONMENT variable
+      - ENVIRONMENT=test # Overwrites the ENVIRONMENT variable
     profiles: ["test"]
 
   shop_e2e:
