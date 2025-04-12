@@ -8,6 +8,7 @@ x-base-common: &base-common
       DEV_BUILD: True
   volumes:
     - ./shop_back:/app
+    - product_index:/app/product_index
   env_file:
     - ./shop_back/.env
   environment:
@@ -110,3 +111,4 @@ services:
 
 volumes:
   postgres_data:
+  product_index:
