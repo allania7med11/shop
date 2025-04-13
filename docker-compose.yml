@@ -38,6 +38,8 @@ services:
     restart: always
     ports:
       - "6379:6379"
+    volumes:
+      - redis_data:/data
 
   shop_back:
     container_name: shop_back
@@ -58,7 +60,7 @@ services:
     env_file: ./shop_front/.env
     volumes:
       - ./shop_front:/app
-      - /app/node_modules # ensures that the node_modules is completely isolated from the host's filesystem
+      - node_modules_front:/app/node_modules
     ports:
       - "3000:3000"
 
@@ -96,7 +98,7 @@ services:
     container_name: shop_back_test
     <<: *base-common
     environment:
-      - ENVIRONMENT=test # Overwrites the ENVIRONMENT variable
+      - ENVIRONMENT=test
     profiles: ["test"]
 
   shop_e2e:
@@ -106,9 +108,12 @@ services:
     env_file: ./shop_e2e/.env
     volumes:
       - ./shop_e2e:/app
-      - /app/node_modules # ensures that the node_modules is completely isolated from the host's filesystem
+      - node_modules_e2e:/app/node_modules
     profiles: ["test"]
 
 volumes:
   postgres_data:
   product_index:
+  node_modules_front:
+  node_modules_e2e:
+  redis_data:
