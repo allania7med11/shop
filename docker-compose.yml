@@ -1,5 +1,3 @@
-version: "3.8"
-
 x-base-common: &base-common
   image: allania7med11/shop_back:latest
   build:
@@ -8,7 +6,7 @@ x-base-common: &base-common
       DEV_BUILD: True
   volumes:
     - ./shop_back:/app
-    - product_index:/app/product_index
+    - vector_indexes:/vector_indexes
   env_file:
     - ./shop_back/.env
   environment:
@@ -113,7 +111,7 @@ services:
 
 volumes:
   postgres_data:
-  product_index:
+  vector_indexes:
   node_modules_front:
   node_modules_e2e:
   redis_data:
