@@ -1,9 +1,10 @@
+#region base config
 x-base-common: &base-common
   image: allania7med11/shop_back:latest
   build:
     context: ./shop_back
     args:
-      DEV_BUILD: True
+      DEV_BUILD: true
   volumes:
     - ./shop_back:/app
     - vector_indexes:/vector_indexes
@@ -14,8 +15,11 @@ x-base-common: &base-common
   depends_on:
     - db
     - redis
+#endregion
 
 services:
+
+#region core services
   db:
     container_name: shop_db
     image: postgres
@@ -38,18 +42,15 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
+#endregion
 
+#region dev services
   shop_back:
     container_name: shop_back
     <<: *base-common
     ports:
       - "8000:8000"
-
-  shop_worker:
-    container_name: shop_worker
-    <<: *base-common
-    environment:
-      - ENVIRONMENT=celery
+    profiles: ["dev", "default"]
 
   shop_front:
     container_name: shop_front
@@ -61,6 +62,7 @@ services:
       - node_modules_front:/app/node_modules
     ports:
       - "3000:3000"
+    profiles: ["dev", "default"]
 
   nginx:
     container_name: shop_nginx
@@ -72,6 +74,55 @@ services:
     depends_on:
       - shop_back
       - shop_front
+    profiles: ["dev", "default"]
+#endregion
+
+#region static generation services
+  shop_back_static:
+    container_name: shop_back_static
+    <<: *base-common
+    environment:
+      - ENVIRONMENT=static
+    tty: true
+    stdin_open: true
+    profiles: ["static"]
+
+  shop_front_static:
+    container_name: shop_front_static
+    build:
+      context: ./shop_front
+    env_file: ./shop_front/.env
+    environment:
+      - ENVIRONMENT=static
+    volumes:
+      - ./shop_front:/app
+      - node_modules_front:/app/node_modules
+    tty: true
+    stdin_open: true
+    profiles: ["static"]
+#endregion
+
+#region production services
+  shop_back_prod:
+    container_name: shop_back_prod
+    <<: *base-common
+    environment:
+      - ENVIRONMENT=prod
+    profiles: ["prod"]
+
+  shop_worker_prod:
+    container_name: shop_worker_prod
+    <<: *base-common
+    environment:
+      - ENVIRONMENT=celery_worker
+    profiles: ["prod"]
+  
+  shop_beat_prod:
+    container_name: shop_beat_prod
+    <<: *base-common
+    environment:
+      - ENVIRONMENT=celery_beat
+    profiles: ["prod"]
 
   nginx_prod:
     container_name: shop_nginx_prod
@@ -87,11 +138,12 @@ services:
       - ./shop_back/shop_back_static:/var/www/shop_back_static
       - ./nginx_prod/log:/var/log/nginx
     depends_on:
-      shop_back:
+      shop_back_prod:
         condition: service_started
-    profiles:
-      - prod
+    profiles: ["prod"]
+#endregion
 
+#region testing services
   shop_back_test:
     container_name: shop_back_test
     <<: *base-common
@@ -108,6 +160,7 @@ services:
       - ./shop_e2e:/app
       - node_modules_e2e:/app/node_modules
     profiles: ["test"]
+#endregion
 
 volumes:
   postgres_data:
