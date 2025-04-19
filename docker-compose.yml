@@ -1,4 +1,19 @@
-version: "3.8"
+x-base-common: &base-common
+  image: allania7med11/shop_back:latest
+  build:
+    context: ./shop_back
+    args:
+      DEV_BUILD: True
+  volumes:
+    - ./shop_back:/app
+    - vector_indexes:/vector_indexes
+  env_file:
+    - ./shop_back/.env
+  environment:
+    - PYTHONUNBUFFERED=1
+  depends_on:
+    - db
+    - redis
 
 services:
   db:
@@ -14,32 +29,27 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5433:5432"
-    
+
   redis:
     container_name: shop_redis
     image: redis:alpine
     restart: always
     ports:
       - "6379:6379"
-
+    volumes:
+      - redis_data:/data
 
   shop_back:
     container_name: shop_back
-    image: allania7med11/shop_back:latest 
-    build:
-      context: ./shop_back
-      args:
-        DEV_BUILD: True
-    env_file: ./shop_back/.env
-    depends_on:
-      - db
-      - redis
-    volumes:
-      - ./shop_back:/app
+    <<: *base-common
     ports:
       - "8000:8000"
+
+  shop_worker:
+    container_name: shop_worker
+    <<: *base-common
     environment:
-      - PYTHONUNBUFFERED=1
+      - ENVIRONMENT=celery
 
   shop_front:
     container_name: shop_front
@@ -48,7 +58,7 @@ services:
     env_file: ./shop_front/.env
     volumes:
       - ./shop_front:/app
-      - /app/node_modules # ensures that the node_modules is completely isolated from the host's filesystem
+      - node_modules_front:/app/node_modules
     ports:
       - "3000:3000"
 
@@ -62,10 +72,10 @@ services:
     depends_on:
       - shop_back
       - shop_front
-    
+
   nginx_prod:
     container_name: shop_nginx_prod
-    image: allania7med11/shop_nginx_prod:latest 
+    image: allania7med11/shop_nginx_prod:latest
     build:
       context: .
       dockerfile: nginx_prod/Dockerfile
@@ -81,19 +91,12 @@ services:
         condition: service_started
     profiles:
       - prod
-  
+
   shop_back_test:
     container_name: shop_back_test
-    build:
-      context: ./shop_back
-      args:
-        DEV_BUILD: True
-    env_file: ./shop_back/.env
-    volumes:
-      - ./shop_back:/app
+    <<: *base-common
     environment:
-      - PYTHONUNBUFFERED=1
-      - ENVIRONMENT=test  # Overwrites the ENVIRONMENT variable
+      - ENVIRONMENT=test
     profiles: ["test"]
 
   shop_e2e:
@@ -103,8 +106,12 @@ services:
     env_file: ./shop_e2e/.env
     volumes:
       - ./shop_e2e:/app
-      - /app/node_modules # ensures that the node_modules is completely isolated from the host's filesystem
+      - node_modules_e2e:/app/node_modules
     profiles: ["test"]
 
 volumes:
   postgres_data:
+  vector_indexes:
+  node_modules_front:
+  node_modules_e2e:
+  redis_data:
