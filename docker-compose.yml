@@ -1,6 +1,25 @@
-version: "3.8"
+#region base config
+x-base-common: &base-common
+  image: allania7med11/shop_back:latest
+  build:
+    context: ./shop_back
+    args:
+      DEV_BUILD: true
+  volumes:
+    - ./shop_back:/app
+    - vector_indexes:/vector_indexes
+  env_file:
+    - ./shop_back/.env
+  environment:
+    - PYTHONUNBUFFERED=1
+  depends_on:
+    - db
+    - redis
+#endregion
 
 services:
+
+#region core services
   db:
     container_name: shop_db
     image: postgres
@@ -14,32 +33,24 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5433:5432"
-    
+
   redis:
     container_name: shop_redis
     image: redis:alpine
     restart: always
     ports:
       - "6379:6379"
+    volumes:
+      - redis_data:/data
+#endregion
 
-
+#region dev services
   shop_back:
     container_name: shop_back
-    image: allania7med11/shop_back:latest 
-    build:
-      context: ./shop_back
-      args:
-        DEV_BUILD: True
-    env_file: ./shop_back/.env
-    depends_on:
-      - db
-      - redis
-    volumes:
-      - ./shop_back:/app
+    <<: *base-common
     ports:
       - "8000:8000"
-    environment:
-      - PYTHONUNBUFFERED=1
+    profiles: ["dev", "default"]
 
   shop_front:
     container_name: shop_front
@@ -48,9 +59,10 @@ services:
     env_file: ./shop_front/.env
     volumes:
       - ./shop_front:/app
-      - /app/node_modules # ensures that the node_modules is completely isolated from the host's filesystem
+      - node_modules_front:/app/node_modules
     ports:
       - "3000:3000"
+    profiles: ["dev", "default"]
 
   nginx:
     container_name: shop_nginx
@@ -62,10 +74,59 @@ services:
     depends_on:
       - shop_back
       - shop_front
-    
+    profiles: ["dev", "default"]
+#endregion
+
+#region static generation services
+  shop_back_static:
+    container_name: shop_back_static
+    <<: *base-common
+    environment:
+      - ENVIRONMENT=static
+    tty: true
+    stdin_open: true
+    profiles: ["static"]
+
+  shop_front_static:
+    container_name: shop_front_static
+    build:
+      context: ./shop_front
+    env_file: ./shop_front/.env
+    environment:
+      - ENVIRONMENT=static
+    volumes:
+      - ./shop_front:/app
+      - node_modules_front:/app/node_modules
+    tty: true
+    stdin_open: true
+    profiles: ["static"]
+#endregion
+
+#region production services
+  shop_back_prod:
+    container_name: shop_back_prod
+    <<: *base-common
+    environment:
+      - ENVIRONMENT=prod
+    profiles: ["prod"]
+
+  shop_worker_prod:
+    container_name: shop_worker_prod
+    <<: *base-common
+    environment:
+      - ENVIRONMENT=celery_worker
+    profiles: ["prod"]
+  
+  shop_beat_prod:
+    container_name: shop_beat_prod
+    <<: *base-common
+    environment:
+      - ENVIRONMENT=celery_beat
+    profiles: ["prod"]
+
   nginx_prod:
     container_name: shop_nginx_prod
-    image: allania7med11/shop_nginx_prod:latest 
+    image: allania7med11/shop_nginx_prod:latest
     build:
       context: .
       dockerfile: nginx_prod/Dockerfile
@@ -77,23 +138,17 @@ services:
       - ./shop_back/shop_back_static:/var/www/shop_back_static
       - ./nginx_prod/log:/var/log/nginx
     depends_on:
-      shop_back:
+      shop_back_prod:
         condition: service_started
-    profiles:
-      - prod
-  
+    profiles: ["prod"]
+#endregion
+
+#region testing services
   shop_back_test:
     container_name: shop_back_test
-    build:
-      context: ./shop_back
-      args:
-        DEV_BUILD: True
-    env_file: ./shop_back/.env
-    volumes:
-      - ./shop_back:/app
+    <<: *base-common
     environment:
-      - PYTHONUNBUFFERED=1
-      - ENVIRONMENT=test  # Overwrites the ENVIRONMENT variable
+      - ENVIRONMENT=test
     profiles: ["test"]
 
   shop_e2e:
@@ -103,8 +158,13 @@ services:
     env_file: ./shop_e2e/.env
     volumes:
       - ./shop_e2e:/app
-      - /app/node_modules # ensures that the node_modules is completely isolated from the host's filesystem
+      - node_modules_e2e:/app/node_modules
     profiles: ["test"]
+#endregion
 
 volumes:
   postgres_data:
+  vector_indexes:
+  node_modules_front:
+  node_modules_e2e:
+  redis_data:
