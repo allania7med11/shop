@@ -8,4 +8,8 @@ generate-static:
 	docker compose --profile static up --build
 
 up-prod:
-	docker compose --profile prod up --build 
+	docker compose --profile prod up --build
+
+# AI assistant behavioral evals (real model — costs tokens, needs OPENAI_API_KEY).
+evals:
+	docker compose run --rm --entrypoint python shop_back manage.py run_evals 
