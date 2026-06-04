@@ -31,11 +31,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Generate static (front export + back collectstatic)
-        run: make generate-static
-
       - name: Stub shop_back/.env (compose validates env_file at parse time)
         run: touch shop_back/.env
+
+      - name: Generate static (front export + back collectstatic)
+        run: make generate-static
 
       - name: Build & push prod images
         run: |
