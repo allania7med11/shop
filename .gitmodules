@@ -1,0 +1,6 @@
+[submodule "shop_back"]
+	path = shop_back
+	url = https://github.com/allania7med11/shop_back
+[submodule "shop_front"]
+	path = shop_front
+	url = https://github.com/allania7med11/shop_front
