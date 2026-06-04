@@ -6,3 +6,5 @@ shop_e2e
 *.log
 backup.sql
 .env
+.vscode
+.playwright-mcp
