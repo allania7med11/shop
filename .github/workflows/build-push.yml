@@ -12,6 +12,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Checkout (with submodules)
         uses: actions/checkout@v4
@@ -31,8 +32,14 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Stub shop_back/.env (compose validates env_file at parse time)
-        run: touch shop_back/.env
+      - name: Write env files (from secrets)
+        run: |
+          cat > shop_back/.env <<'EOF'
+          ${{ secrets.BACKEND_ENV }}
+          EOF
+          cat > shop_front/.env <<'EOF'
+          ${{ secrets.FRONTEND_ENV }}
+          EOF
 
       - name: Generate static (front export + back collectstatic)
         run: make generate-static
