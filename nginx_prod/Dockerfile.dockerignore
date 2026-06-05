@@ -5,4 +5,3 @@
 .git
 shop_front/shop_front
 shop_back/shop_back_static
-shop_back/.env

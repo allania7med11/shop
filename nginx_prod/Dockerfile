@@ -24,7 +24,9 @@ WORKDIR /app
 COPY shop_back/requirements.txt ./
 RUN pip install --upgrade pip && pip install psycopg2 && pip install -r requirements.txt
 COPY shop_back/ ./
-RUN python manage.py collectstatic --noinput
+# Drop any copied .env so collectstatic uses the clean build env above, not prod
+# secrets — independent of whether .dockerignore is honored by the builder.
+RUN rm -f .env && python manage.py collectstatic --noinput
 # -> /app/shop_back_static/out
 
 # ---- Serve ----
